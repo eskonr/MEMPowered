@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="mainHeader">
+        <div class="float-left">
+            <img src="/Images/logo_text.png" height="40" class="logo"/>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/" data-tabID="information">Computers</a></li>
+                    <li><a href="/User" data-tabID="information" class="selected">Users</a></li>
+                    @if (ViewData["isAdmin"] != null && (bool)ViewData["isAdmin"])
+                    {
+                        <li><a href="/Admin" data-tabID="information">Admin</a></li> }
+                </ul>
+            </nav>
+        </div>
+        <div class="mainHeaderLinks">
+            <section id="login">
+                @Html.Partial("_LoginPartial")
+            </section>
+        
+        </div>
+        <div class="hr"></div>
+        <div class="clear"></div>
+    </div>
+    <div id="AdminPage">
+        @RenderBody()
+    </div>
+</div>

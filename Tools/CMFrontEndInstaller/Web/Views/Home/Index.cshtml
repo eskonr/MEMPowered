@@ -1,0 +1,224 @@
+﻿
+<div class="container">
+    <div id="initLoading" class="loadingOuter" data-bind="visible: !initialized()">
+        <div class="loadingInner">
+            <div class="floatingCirclesG">
+                <div class="f_circleG frotateG_01"></div>
+                <div class="f_circleG frotateG_02"></div>
+                <div class="f_circleG frotateG_03"></div>
+                <div class="f_circleG frotateG_04"></div>
+                <div class="f_circleG frotateG_05"></div>
+                <div class="f_circleG frotateG_06"></div>
+                <div class="f_circleG frotateG_07"></div>
+                <div class="f_circleG frotateG_08"></div>
+            </div>
+            <h4>Starting</h4>
+        </div>
+    </div>
+    <div class="mainHeader">
+        <div class="float-left">
+            <img src="/Images/logo_text.png" height="40" class="logo" />
+            <nav>
+                <ul class="menu">
+                    <li><a href="javascript:" class="selected" data-tabID="information">Computers</a></li>
+                    <li><a href="/User" data-tabID="information">Users</a></li>
+                    @if (ViewData["isAdmin"] != null && (bool)ViewData["isAdmin"])
+                    {
+                        <li><a href="/Admin" data-tabID="information">Admin</a></li> }
+                </ul>
+            </nav>
+        </div>
+        <div class="mainHeaderLinks">
+            <section id="login">
+                @Html.Partial("_LoginPartial")
+            </section>
+
+        </div>
+        <div class="hr"></div>
+        <div class="clear"></div>
+    </div>
+    <div id="computersTab" class="mainContent">
+        <div class="treeDiv" id="treeContainer">
+            <div id="treeLoading" class="loadingRelativeOuter" data-bind="visible: loading()">
+                <div class="loadingInner">
+                    <div class="floatingCirclesG">
+                        <div class="f_circleG frotateG_01"></div>
+                        <div class="f_circleG frotateG_02"></div>
+                        <div class="f_circleG frotateG_03"></div>
+                        <div class="f_circleG frotateG_04"></div>
+                        <div class="f_circleG frotateG_05"></div>
+                        <div class="f_circleG frotateG_06"></div>
+                        <div class="f_circleG frotateG_07"></div>
+                        <div class="f_circleG frotateG_08"></div>
+                    </div>
+                    <h4>Loading</h4>
+                </div>
+            </div>
+            <p class="updatedLine"><span data-bind="text: updated"></span><span><img src="/Images/reload.png" height="20" data-bind="click: getTree" /></span></p>
+            <input id="compTreeSearch" type="text" placeholder="Filter" data-bind="visible: !loading()" />
+            <div id="computersTree" class="tree" data-bind="dynatree: {data: items, childdata: items.children}, visible: !loading()">
+            </div>
+        </div>
+        <div id="computersContent" class="contentTab">
+            <div class="popupOuterDeploy" data-bind="visible: deploymentLoading()">
+                <div class="popupContainer popupContainerDeploy">
+                    <div class="loadingAbsoluteInner loadingAbsoluteInnerDeploy" data-bind="visible: deploymentLoading() && !(deploymentSuccess() || deploymentFail())">
+                        <div class="floatingCirclesG">
+                            <div class="f_circleG frotateG_01"></div>
+                            <div class="f_circleG frotateG_02"></div>
+                            <div class="f_circleG frotateG_03"></div>
+                            <div class="f_circleG frotateG_04"></div>
+                            <div class="f_circleG frotateG_05"></div>
+                            <div class="f_circleG frotateG_06"></div>
+                            <div class="f_circleG frotateG_07"></div>
+                            <div class="f_circleG frotateG_08"></div>
+                        </div>
+                        <h4>Starting Deployment</h4>
+                    </div>
+                    <div class="loadingAbsoluteInner loadingAbsoluteInnerDeploy" data-bind="visible: deploymentSuccess()">
+                        <img src="/Images/Success.png" />
+                        <h4>Deployment Started!</h4>
+                    </div>
+                    <div class="loadingAbsoluteInner loadingAbsoluteInnerDeploy" data-bind="visible: deploymentFail()">
+                        <img src="/Images/Fail.png" />
+                        <h4 style="margin-top: 0;">Deployment already exists<br /> or an error has occoured!</h4>
+                    </div>
+                </div>
+            </div>
+            <div id="noSelection" class="loadingRelativeOuter contentTab" data-bind="visible: !selected()">
+                <div class="loadingRelativeInner">
+
+                    <h2 style="margin-top:0;">Select a computer</h2>
+                </div>
+            </div>
+            <div class="contentTitle">
+                <p class="updatedLine" data-bind="visible: !loading()"><span data-bind="text: updated"></span><span><img src="/Images/reload.png" height="20" data-bind="click: refresh" /></span></p>
+                <div class="onlineIndicator" data-bind="css: {'online': online, 'offline': !online() }, attr: { title: onlineTitle }"></div>
+                <p id="computerName" data-bind="text: name"></p>
+                <nav>
+                    <ul class="menu submenu">
+                        <li><a href="javascript:" class="selected" data-tabID="information">Information</a></li>
+                        <li><a href="javascript:" data-tabID="applications">Applications</a></li>
+                        <li><a href="javascript:" data-tabID="tools">Tools + Reports</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- <div class="hr"></div> -->
+            <div id="computerLoading" class="loadingAbsoluteOuter contentDivOuterLoading" data-bind="visible: selected() && loading()">
+                <div class="loadingAbsoluteInner">
+                    <div class="floatingCirclesG">
+                        <div class="f_circleG frotateG_01"></div>
+                        <div class="f_circleG frotateG_02"></div>
+                        <div class="f_circleG frotateG_03"></div>
+                        <div class="f_circleG frotateG_04"></div>
+                        <div class="f_circleG frotateG_05"></div>
+                        <div class="f_circleG frotateG_06"></div>
+                        <div class="f_circleG frotateG_07"></div>
+                        <div class="f_circleG frotateG_08"></div>
+                    </div>
+                    <h4>Loading</h4>
+                </div>
+            </div>
+            <div id="information" class="contentDivOuter" data-bind="with: $root.informationViewModel">
+                <div class="contentDiv">
+                    <h3>Information</h3>
+                    <!-- ko template: { name: 'information-template', foreach: groups } -->
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div id="applications" class="contentDivOuter">
+                <div id="computerApplicationLoading" class="loadingAbsoluteOuter contentDivOuterLoading" data-bind="visible: selected() && appLoading()">
+                    <div class="loadingAbsoluteInner">
+                        <div class="floatingCirclesG">
+                            <div class="f_circleG frotateG_01"></div>
+                            <div class="f_circleG frotateG_02"></div>
+                            <div class="f_circleG frotateG_03"></div>
+                            <div class="f_circleG frotateG_04"></div>
+                            <div class="f_circleG frotateG_05"></div>
+                            <div class="f_circleG frotateG_06"></div>
+                            <div class="f_circleG frotateG_07"></div>
+                            <div class="f_circleG frotateG_08"></div>
+                        </div>
+                        <h4>Loading</h4>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <section data-bind="with: $root.installableSoftwareViewModel">
+                        <h3>Deployable Software - <span data-bind="text: items().length"></span></h3>
+                        <div style="width:100%">
+                            <div style="display:inline-block; width:49%;"><input type="button" id="installSoftwareBtn" value="Deploy Selected" class="appBtn" data-bind="click: $parent.deployClick, disable: !selected()" /></div>
+                            <div style="display:inline-block; width: 50%; text-align: right"><input type="text" id="appFilter" data-bind="value: applicationFilter, valueUpdate: 'afterkeydown'" style="width:200px;" placeholder="Filter" /></div>
+                        </div>
+                        <div id="installableAppsGrid" data-bind="slickGrid: { data: items, columns: columns }" class="gridContainer"></div>
+                    </section>
+                    <section data-bind="with: $root.installedSoftwareViewModel">
+                        <div style="width:100%">
+                            <div style="display:inline-block; width:49%;"><h3>Deployed Software - <span data-bind="text: items().length"></span></h3></div>
+                            <div style="display:inline-block; width: 50%; text-align: right"><input type="text" id="appFilter2" data-bind="value: applicationFilter, valueUpdate: 'afterkeydown'" style="width:200px;" placeholder="Filter" /></div>
+
+                        </div>
+                        <div id="installedAppsGrid" data-bind="slickGrid: { data: items, columns: columns }" class="gridContainer"></div>
+                    </section>
+                </div>
+            </div>
+            <div id="tools" class="contentDivOuter">
+                <div class="contentDiv">
+                    <h3>Tools</h3>
+                    <div class="toolbox">
+                        <div class="tool"><a href="javascript:" name="remotedesktop"><img src="/Images/icons/rdp.png" width="16" height="16" />Remote Desktop</a></div>
+                        <div class="tool"><a href="javascript:" name="remoteassistance"><img src="/Images/icons/remoteassistance.png" width="16" height="16" />Remote Assistance</a></div>
+                        <div class="tool"><a href="javascript:" name="remotecontrol"><img src="/Images/icons/remotecontrol.png" width="16" height="16" />Remote Control</a></div>
+                        <div class="tool"><a href="javascript:" name="remoteconsole"><img src="/Images/icons/powershell.png" width="16" height="16" />Remote Console</a></div>
+                        <br />
+                        <div class="tool"><a href="javascript:" name="computermanager"><img src="/Images/icons/computerManagement.png" width="16" height="16" />Computer Management</a></div>
+                        <div class="tool"><a href="javascript:" name="systeminfo"><img src="/Images/icons/msinfo.png" width="16" height="16" />System Information</a></div>
+                        <div class="tool"><a href="javascript:" name="openlogs"><img src="/Images/icons/folder.png" width="16" height="16" />Open Logs Folder</a></div>
+                        <!--
+                            <div class="tool"><a href="javascript:" id="tool_resourceexplorer"><img src="/Images/icons/resourceexplorer.png" width="16" height="16"/>Resource Explorer</a></div>
+                            <div class="tool"><a href="javascript:" id="tool_wakeonlan"><img src="/Images/icons/wol.png" width="16" height="16"/>Wake On LAN</a></div>
+                            <div class="tool"><a href="javascript:" id="tool_deploymentmonitor"><img src="/Images/icons/deploymentmonitor.png" width="16" height="16"/>Deployment Monitoring Tool</a></div>
+                            -->
+                    </div>
+                    <h3>Reports</h3>
+                    <section data-bind="with: $root.ReportsViewModel">
+                        <div class="toolbox">
+                            <!-- ko template: { name: 'reports-template', foreach: reports } -->
+                            <!-- /ko -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mainFooter">
+    <div class="hr"></div>
+    <section id="taskGridSection">
+        <div id="taskGrid" data-bind="slickGrid: { data: items, columns: columns }"></div>
+    </section>
+    </div>
+    </div>
+
+    <script type="text/html" id="information-template">
+        <div class="infoBox">
+            <p class="infoBoxTitle" data-bind="text: name"></p>
+            <!-- ko foreach: items -->
+            <div class="row">
+                <label data-bind="text: title"></label>
+                <div class="rowData" data-bind="text: value"></div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </script>
+
+    <script type="text/html" id="reports-template">
+        <div class="tool"><a href="javascript:" data-bind="text: name, click: openReport"></a></div>
+    </script>
+
+    <div class="popupOuterDeploy" id="comErrorPopup">
+        <div class="popupContainer popupContainerDeploy">
+            <div class="loadingAbsoluteInner loadingAbsoluteInnerDeploy">
+                <img src="/Images/Fail.png" />
+                <h4 style="margin-top: 0;">Communication Error:<br /> <span id="comErrorText"></span></h4>
+            </div>
+        </div>
+    </div>

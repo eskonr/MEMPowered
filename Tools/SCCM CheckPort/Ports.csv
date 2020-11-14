@@ -1,0 +1,126 @@
+Application Catalog Web Service Point -- > SQL Server,SQL over TCP,1433,Tcp
+Application Catalog Website Point -- > Application Catalog Web Service Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Application Catalog Website Point -- > Application Catalog Web Service Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Asset Intelligence Synchronization Point -- > Microsoft,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Asset Intelligence Synchronization Point -- > SQL Server,SQL over TCP,1433,Tcp
+Client -- > Application Catalog Website Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Client -- > Application Catalog Website Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Client -- > Client,Wake on LAN,9,Udp
+Client -- > Client,Wake-up proxy,25536,Udp
+Client -- > Cloud-Based Distribution Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Client -- > Configuration Manager Policy Module (Network Device Enrollment Service),Hypertext Transfer Protocol (HTTP),80,Tcp
+Client -- > Configuration Manager Policy Module (Network Device Enrollment Service),Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Client -- > Distribution Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Client -- > Distribution Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Client -- > Distribution Point Configured for Multicast,Server Message Block (SMB),445,Tcp
+Client -- > Fallback Status Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Client -- > Global Catalog Domain Controller,Global Catalog LDAP,3268,Tcp
+Client -- > Global Catalog Domain Controller,Global Catalog LDAP SSL,3269,Tcp
+Client -- > Management Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Client -- > Management Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Client -- > Management Point,Notification Channel,10123,Tcp
+Client -- > Software Update Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Client -- > Software Update Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Client -- > Software Update Point,Windows Server Update Services,8530,Tcp
+Client -- > Software Update Point,Secure Windows Server Update Services,8531,Tcp
+Client -- > State Migration Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Client -- > State Migration Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Client -- > State Migration Point,Server Message Block (SMB),445,Tcp
+Configuration Manager Console -- > Client,Remote Control (control),2701,Tcp
+Configuration Manager Console -- > Client,Remote Assistance (RDP and RTC),3389,Tcp
+Configuration Manager Console -- > Internet,Hypertext Transfer Protocol (HTTP),80,Tcp
+Configuration Manager Console -- > Reporting Services Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Configuration Manager Console -- > Reporting Services Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Configuration Manager Console -- > Site Server,RPC Endpoint Mapper,135,Tcp
+Configuration Manager Console -- > SMS Provider,RPC,1,Tcp
+Configuration Manager Console -- > SMS Provider,RPC Endpoint Mapper,135,Tcp
+Configuration Manager Policy Module (Network Device Enrollment Service) -- > Certificate Registration Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Distribution Point -- > Management Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Distribution Point -- > Management Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Endpoint Protection Point -- > Internet,Hypertext Transfer Protocol (HTTP),80,Tcp
+Endpoint Protection Point -- > SQL Server,SQL over TCP,1433,Tcp
+Enrollment Point -- > SQL Server,SQL over TCP,1433,Tcp
+Enrollment Proxy Point -- > Enrollment Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Exchange Server Connector -- > Exchange Online,Windows Remote Management over HTTPS,5986,Tcp
+Exchange Server Connector -- > On Premises Exchange Server,Windows Remote Management over HTTP,5985,Tcp
+Mac Computer -- > Enrollment Proxy Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Management Point -- > Domain Controller,RPC,1,Tcp
+Management Point -- > Domain Controller,RPC Endpoint Mapper,135,Tcp
+Management Point -- > Domain Controller,Lightweight Directory Access Protocol (LDAP),389,Tcp
+Management Point -- > Domain Controller,LDAP (Secure Sockets Layer [SSL] connection),636,Tcp
+Management Point -- > Domain Controller,Global Catalog LDAP,3268,Tcp
+Management Point -- > Domain Controller,Global Catalog LDAP SSL,3269,Tcp
+Management Point < -- > Site Server,RPC,1,Tcp
+Management Point < -- > Site Server,RPC Endpoint Mapper,135,Tcp
+Management Point < -- > Site Server,Server Message Block (SMB),445,Tcp
+Management Point < -- > SQL Server,SQL over TCP,1433,Tcp
+Mobile Device -- > Enrollment Proxy Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Mobile Device -- > Microsoft Intune,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Reporting Services Point -- > SQL Server,SQL over TCP,1433,Tcp
+Service Connection Point -- > Microsoft Intune,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Site Server -- > Cloud-Based Distribution Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Site Server -- > Distribution Point,RPC,1,Tcp
+Site Server -- > Distribution Point,RPC Endpoint Mapper,135,Tcp
+Site Server -- > Distribution Point,Server Message Block (SMB),445,Tcp
+Site Server -- > Domain Controller,RPC,1,Tcp
+Site Server -- > Domain Controller,RPC Endpoint Mapper,135,Tcp
+Site Server -- > Domain Controller,Lightweight Directory Access Protocol (LDAP),389,Tcp
+Site Server -- > Domain Controller,LDAP (Secure Sockets Layer [SSL] connection),636,Tcp
+Site Server -- > Domain Controller,Global Catalog LDAP,3268,Tcp
+Site Server -- > Domain Controller,Global Catalog LDAP SSL,3269,Tcp
+Site Server -- > Internet,Hypertext Transfer Protocol (HTTP),80,Tcp
+Site Server -- > SMS Provider,RPC,1,Tcp
+Site Server -- > SMS Provider,RPC Endpoint Mapper,135,Tcp
+Site Server -- > SMS Provider,Server Message Block (SMB),445,Tcp
+Site Server -- > SQL Server,SQL over TCP,1433,Tcp
+Site Server -- > SQL Server (During Installation),RPC,1,Tcp
+Site Server -- > SQL Server (During Installation),RPC Endpoint Mapper,135,Tcp
+Site Server -- > SQL Server (During Installation),Server Message Block (SMB),445,Tcp
+Site Server < -- > Application Catalog Web Service Point,RPC,1,Tcp
+Site Server < -- > Application Catalog Web Service Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Application Catalog Web Service Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Application Catalog Website Point,RPC,1,Tcp
+Site Server < -- > Application Catalog Website Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Application Catalog Website Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Asset Intelligence Synchronization Point,RPC,1,Tcp
+Site Server < -- > Asset Intelligence Synchronization Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Asset Intelligence Synchronization Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Certificate Registration Point,RPC,1,Tcp
+Site Server < -- > Certificate Registration Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Certificate Registration Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Endpoint Protection Point,RPC,1,Tcp
+Site Server < -- > Endpoint Protection Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Endpoint Protection Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Enrollment Point,RPC,1,Tcp
+Site Server < -- > Enrollment Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Enrollment Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Enrollment Proxy Point,RPC,1,Tcp
+Site Server < -- > Enrollment Proxy Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Enrollment Proxy Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Fallback Status Point,RPC,1,Tcp
+Site Server < -- > Fallback Status Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Fallback Status Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Issuing Certification Authority (CA),RPC,1,Tcp
+Site Server < -- > Issuing Certification Authority (CA),RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Reporting Services Point,RPC,1,Tcp
+Site Server < -- > Reporting Services Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > Reporting Services Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Site Server,Server Message Block (SMB),445,Tcp
+Site Server < -- > Software Update Point,Hypertext Transfer Protocol (HTTP),80,Tcp
+Site Server < -- > Software Update Point,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Site Server < -- > Software Update Point,Server Message Block (SMB),445,Tcp
+Site Server < -- > Software Update Point,Windows Server Update Services,8530,Tcp
+Site Server < -- > Software Update Point,Secure Windows Server Update Services,8531,Tcp
+Site Server < -- > State Migration Point,RPC Endpoint Mapper,135,Tcp
+Site Server < -- > State Migration Point,Server Message Block (SMB),445,Tcp
+SMS Provider -- > SQL Server,SQL over TCP,1433,Tcp
+Software Update Point -- > Internet,Hypertext Transfer Protocol (HTTP),80,Tcp
+Software Update Point -- > Upstream WSUS Server,Hypertext Transfer Protocol (HTTP),80,Tcp
+Software Update Point -- > Upstream WSUS Server,Secure Hypertext Transfer Protocol (HTTPS),443,Tcp
+Software Update Point -- > Upstream WSUS Server,Windows Server Update Services,8530,Tcp
+Software Update Point -- > Upstream WSUS Server,Secure Windows Server Update Services,8531,Tcp
+SQL Server --> SQL Server,SQL over TCP,1433,Tcp
+SQL Server --> SQL Server,SQL Server Service Broker,4022,Tcp
+State Migration Point -- > SQL Server,SQL over TCP,1433,Tcp
+Site Server -- > DNS Server,Domain Name System (DNS),53,Tcp
+Site Server -- > Site system,NetBIOS Session Service,139,Tcp

@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FrontendOSDDataLib</name>
+    </assembly>
+    <members>
+        <member name="T:FrontendOSDDataLib.OSDComputer">
+            <summary>
+            Computer object for CMFrontend OSD transactions.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDComputer.ComputerName">
+            <summary>
+            The computer name of the system
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDComputer.SMBIOS">
+            <summary>
+            The SMBIOS ID of the computer
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDComputer.ResourceID">
+            <summary>
+            The ConfigMgr ResourceID for the computer
+            </summary>
+        </member>
+        <member name="M:FrontendOSDDataLib.OSDComputer.IsEqual(System.Object)">
+            <summary>
+            Used to determine if one OSDComputer object is equal to another.
+            </summary>
+            <param name="obj">The object to compare against.</param>
+        </member>
+        <member name="T:FrontendOSDDataLib.OSDComputerRequest">
+            <summary>
+            The request object sent by the end-user for dealings with Computer objects via OSD API.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDComputerRequest.ComputerName">
+            <summary>
+            The computer name of the system.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDComputerRequest.SMBIOS">
+            <summary>
+            The SMBIOS ID of the system
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDComputerRequest.MACAddress">
+            <summary>
+            The MAC address of the system.
+            </summary>
+        </member>
+        <member name="T:FrontendOSDDataLib.OSDCreateComputerRequest">
+            <summary>
+            The request object sent by the end user to create a new computer object in ConfigMgr.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDCreateComputerRequest.Computer">
+            <summary>
+            The computer request object that specifies the data for the system that is to be created. <see cref="T:FrontendOSDDataLib.OSDComputerRequest"/> 
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDCreateComputerRequest.RemoveExistingRecord">
+            <summary>
+            If true, anyexisting records will be overritten. 
+            </summary>
+        </member>
+        <member name="T:FrontendOSDDataLib.OSDGetComputerRequest">
+            <summary>
+            The request object sent by the end user to get data back about a system from its SMBIOS ID.
+            For example, if you want to know if a system is in ConfigMgr without needing to know the computer name.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDGetComputerRequest.SMBIOS">
+            <summary>
+            The SMBIOS ID of the system.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDGetComputerRequest.MACAddress">
+            <summary>
+            The MACAddress of the system.
+            </summary>
+        </member>
+        <member name="T:FrontendOSDDataLib.OSDComputerByNameRequest">
+            <summary>
+            The request object sent by the end user to get data back about a system from its computer name.
+            For example, if you want to know if a system already exists in ConfigMgr based on a computer name.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDComputerByNameRequest.ComputerName">
+            <summary>
+            The Computer name of the system.
+            </summary>
+        </member>
+        <member name="T:FrontendOSDDataLib.OSDActiveDirectoryOU">
+            <summary>
+            Contains the Name and DN of an Active Directory OU.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDActiveDirectoryOU.Name">
+            <summary>
+            The name of the AD OU
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDActiveDirectoryOU.DistinguishedName">
+            <summary>
+            The Distingished Name of the AD OU.
+            </summary>
+        </member>
+        <member name="T:FrontendOSDDataLib.OSDTSAdvertisement">
+            <summary>
+            Represents a Task Sequence deployment that is active in ConfigMgr.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDTSAdvertisement.Name">
+            <summary>
+            The name of the Task Sequence.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDTSAdvertisement.AdvertisementID">
+            <summary>
+            The ID of the deployment.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDTSAdvertisement.CollectionID">
+            <summary>
+            The Collection ID the deployment is targeting.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDTSAdvertisement.Category">
+            <summary>
+            The category of the Task Sequence.
+            </summary>
+        </member>
+        <member name="M:FrontendOSDDataLib.OSDTSAdvertisement.ToString">
+            <summary>
+            Override of the ToString function.
+            </summary>
+            <returns>The name of the task sequence.</returns>
+        </member>
+        <member name="T:FrontendOSDDataLib.OSDTSAdvertismentRequest">
+            <summary>
+            The request object sent by the end user to request a list of task sequences available for deployment.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDTSAdvertismentRequest.Development">
+            <summary>
+            Specifies if you want to include development task sequenes.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDTSAdvertismentRequest.CategoryFilter">
+            <summary>
+            The text to search for in the category field of the task sequence. If null, all task sequences are returned.
+            </summary>
+        </member>
+        <member name="T:FrontendOSDDataLib.OSDCollection">
+            <summary>
+            Represents basic information about a ConfigMgr Collection.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDCollection.Name">
+            <summary>
+            The Collection name.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDCollection.ID">
+            <summary>
+            The Collection ID.
+            </summary>
+        </member>
+        <member name="T:FrontendOSDDataLib.OSDCollectionMembershipRequest">
+            <summary>
+            The request object sent by the end user to add a computer to a ConfigMgr collection.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDCollectionMembershipRequest.Collection">
+            <summary>
+            The Collection to add the computer object to.
+            </summary>
+        </member>
+        <member name="P:FrontendOSDDataLib.OSDCollectionMembershipRequest.Computer">
+            <summary>
+            The computer object to add to the collection.
+            </summary>
+        </member>
+    </members>
+</doc>

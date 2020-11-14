@@ -1,0 +1,55 @@
+@using System.Web.Http
+@using System.Web.Http.Controllers
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@using ConfigMgrWebFrontend.Areas.HelpPage.Models
+@model Collection<ApiDescription>
+
+@{
+    ViewBag.Title = "CMFrontend OSD API Help Page";
+
+    // Group APIs by controller
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+}
+
+<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+<header class="help-page">
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</header>
+<div id="body" class="help-page">
+    <section class="featured">
+        <div class="content-wrapper">
+            <h2>Introduction</h2>
+            <p>
+                This API is to facilitate the creation and use of Pre-Execution applications / scripts in ConfigMgr boot images. 
+            </p>
+            <p>
+                The API revolves around 3 basic tasks:
+                <ul>
+                    <li>Retrieving a list of tasksequence deployments.</li>
+                    <li>Creating &amp; deleting machine records.</li>
+                    <li>Adding &amp; verifying collection membership.</li>
+                </ul>
+                With these 3 tasks you should beable to create an application / script that can prestage a machine record and then add it the collection of the task sequence deployment you want to run.
+            </p>
+            <h3>Authentication</h3>
+            <p>
+                <b>Authentication is required</b> and is handled via Basic Authroization via HTTPS only. Authorization follows the same rules as the main site. Any user/service account authenticating with this service must be in an enabled RBAC group. You can use this authentication in your application to prevent unwanted users from performing these actions.
+            </p>
+            <h3>Request &amp; response classes</h3>
+            <p>
+                if you use C# (and potentially poweshell) to create your pre-execution application, make sure to use the included pre-built classes found in the APIModel folder of the installation files. They will save you from having to create them yourself!
+            </p>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
+    </section>
+</div>

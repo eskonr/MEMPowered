@@ -1,0 +1,49 @@
+2019-03-25 15:48:29 INFO     --- Initializing RMS Analyzer ---
+2019-03-25 15:48:29 INFO     Allow remediation operations: True
+2019-03-25 15:48:29 INFO     Current user: PRUASIA\srvsgrhosccm
+2019-03-25 15:48:29 INFO     Machine name: asgrhoxvd1016
+2019-03-25 15:48:29 INFO     Elevated permissions: True
+2019-03-25 15:48:29 INFO     System product: Windows 10 Enterprise
+2019-03-25 15:48:30 INFO     System version: Microsoft Windows [Version 10.0.17763.316]
+2019-03-25 15:48:30 INFO     System architecture: x64
+2019-03-25 15:48:30 INFO     System time: 3/25/2019 3:48 PM
+2019-03-25 15:48:30 INFO     Microsoft Office 2016 mode: WOW64
+2019-03-25 15:48:30 INFO     MSDRM Version: 6.2.17763.1
+2019-03-25 15:48:30 INFO     RMS Analyzer version: v1.0.1.478
+2019-03-25 15:48:30 INFO     --- Initialization completed ---
+2019-03-25 15:48:31 INFO     Template path: C:\Users\srvsgrhosccm\AppData\Local\Microsoft\DRM\Templates
+2019-03-25 15:48:31 INFO     Template path: C:\Users\srvsgrhosccm\AppData\Local\Microsoft\MSIPC\Templates
+2019-03-25 15:49:00 INFO     --- Running reset configuration ---
+2019-03-25 15:49:03 INFO     Executing remediation:  Reset the current RMS configuration and settings
+2019-03-25 15:49:03 INFO     Resetting all RMS settings on this computer.
+2019-03-25 15:49:03 INFO     Deleting all policy templates from the local store for MSDRM.
+2019-03-25 15:49:03 INFO     Deleting all certificates from the local store for MSDRM.
+2019-03-25 15:49:03 INFO     Deleting all policy templates from the local store for MSIPC.
+2019-03-25 15:49:03 INFO     Deleting all certificates from the local store for MSIPC.
+2019-03-25 15:49:03 INFO     Deleting all cached DRM registry keys for Microsoft Office.
+2019-03-25 15:49:03 INFO     Deleting all template management cached registry keys for MSDRM, MSIPC and RMS Sharing App.
+2019-03-25 15:49:03 INFO     Setting MSDRM client hierarchy to Production.
+2019-03-25 15:49:03 INFO     Deleting all service discovery registry overrides for MSDRM.
+2019-03-25 15:49:03 INFO     Deleting all service discovery registry overrides for MSIPC.
+2019-03-25 15:49:03 INFO     Deleting all cached identity registry keys for Microsoft Office 2013 and 2016.
+2019-03-25 15:49:03 INFO     Disabling tracing for MSDRM, MSIPC, Microsoft Office and MSOIdentity.
+2019-03-25 15:49:03 INFO     Deleting all cached registry keys for MSOIdentity.
+2019-03-25 15:49:03 INFO     Remediation operations succeeded.
+2019-03-25 15:49:03 INFO     --- Reset configuration completed ---
+2019-03-25 15:49:03 INFO     Reset configuration succeeded. You should now be able to use Rights Management services on your computer.
+2019-03-25 15:49:11 INFO     --- Running trace logging ---
+2019-03-25 15:50:08 INFO     Disabling tracing regkeys.
+2019-03-25 15:50:08 INFO     Collecting debug logs and writing to file.
+2019-03-25 15:50:08 INFO     Collecting Office trace files.
+2019-03-25 15:50:08 INFO     Exporting relevant regkeys.
+2019-03-25 15:50:17 INFO     Copying application logs.
+2019-03-25 15:50:17 INFO     Copying MSIPC logs.
+2019-03-25 15:50:17 INFO     Copying universal Office MSIPC logs.
+2019-03-25 15:50:20 INFO     Copying MSIPC event logs.
+2019-03-25 15:50:21 INFO     Collecting MSIPC event logs if they exist.
+2019-03-25 15:50:23 ERROR    Export MSIPC event logs output: Failed to export log .
+The specified channel could not be found.
+
+2019-03-25 15:50:23 INFO     Zipping logs.
+2019-03-25 15:50:23 INFO     Starting service: msoidsvc
+2019-03-25 15:50:23 INFO     --- Trace logging completed ---

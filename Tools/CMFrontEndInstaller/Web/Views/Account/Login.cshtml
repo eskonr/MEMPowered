@@ -1,0 +1,35 @@
+﻿@model ConfigMgrWebFrontend.Models.LoginModel
+<div class="popupContainer">
+    <img src="/Images/logo_text.png" height="57"/>
+    <div class="content-wrapper">
+        @Html.ValidationSummary(true)
+        <section id="loginForm">
+            @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+                @Html.AntiForgeryToken()
+                
+
+                <fieldset>
+                    <legend>Log in Form</legend>
+                    <ol>
+                        <li>
+                            @Html.LabelFor(m => m.UserName)
+                            @Html.TextBoxFor(m => m.UserName)
+                            
+                        </li>
+                        <li>
+                            @Html.LabelFor(m => m.Password)
+                            @Html.PasswordFor(m => m.Password)
+                            
+                        </li>
+                    </ol>
+                    <input type="submit" value="Log in" />
+                </fieldset>
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/logon")
+}

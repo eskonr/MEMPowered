@@ -1,0 +1,9 @@
+﻿<h3>User Lookup</h3>
+<form data-bind="submit: userSearch">
+    <input id="UserSearch" type="text" placeholder="User Name" data-bind="value: username" />
+    <button id="UserSearchBtn" type="submit">Search</button>
+ </form>
+
+<section id="UserComputersGridSection">
+    <div id="UserComputersGrid" data-bind="slickGrid: { data: items, columns: columns }"></div>
+</section>

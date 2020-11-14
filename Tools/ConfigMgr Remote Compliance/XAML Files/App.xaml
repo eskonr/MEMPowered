@@ -1,0 +1,60 @@
+﻿<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="ConfigMgr Remote Compliance" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid x:Name="Grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="56"/>
+            <RowDefinition Height="304*"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBox x:Name="ComputerName" Margin="5,5,5,0" HorizontalAlignment="Left" Height="51" VerticalAlignment="Top" Width="242" FontSize="25" materialDesign:HintAssist.Hint="ComputerName" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.FloatingScale="0.5" materialDesign:HintAssist.FloatingOffset="0,-50"/>
+            <Button x:Name="BT_Config" Content="Get Configurations" Margin="5,0,0,0" IsEnabled="False"/>
+            <Button x:Name="BT_Eval" Content="Evaluate" Margin="5,0,0,0" IsEnabled="False"/>
+            <Button x:Name="BT_Report" Content="View Report" Margin="5,0,0,0" IsEnabled="False"/>
+            <Button x:Name="BT_Refresh" Content="Refresh" Margin="5,0,0,0" IsEnabled="False"/>
+            <ProgressBar x:Name="Progress" Margin="25,5,5,5" Height="auto" Width="45" Style="{StaticResource MaterialDesignCircularProgressBar}" IsIndeterminate="False"/>
+        </StackPanel>
+        <Expander x:Name="expander" Header="Logging" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Height="auto" Width="790" IsExpanded="False">
+            <RichTextBox x:Name="richTextBox" Padding="10" IsReadOnly="True" Height="99" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" IsReadOnlyCaretVisible="True">
+                <FlowDocument x:Name="FlowDocument">
+                    <Paragraph></Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Expander>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="312" Width="770" ItemsSource="{Binding [0].DefaultView}" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="True" SelectionMode="Single"/>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="auto" Grid.Row="0">
+            <MenuItem x:Name="ViewLogs" Header="View Client Logs" Height="20" FontSize="12" IsEnabled="False">
+                <MenuItem x:Name="DCMAgent" Header="DCMAgent.log"/>
+                <MenuItem x:Name="DCMReporting" Header="DCMReporting.log"/>
+                <MenuItem x:Name="DCMWMIProvider" Header="DcmWmiProvider.log"/>
+                <MenuItem x:Name="StateMessage" Header="StateMessage.log"/>
+                <MenuItem x:Name="CIAgent" Header="CIAgent.log"/>
+                <MenuItem x:Name="CIStateStore" Header="CIStateStore.log"/>
+            </MenuItem>
+            <MenuItem x:Name="Help" Header="Help" Height="20" FontSize="12"/>
+            <MenuItem x:Name="About" Header="About" Height="20" FontSize="12"/>
+            <MenuItem x:Name="Update" Header="Update Available!" Height="20" FontSize="12" Background="LimeGreen" Visibility="Hidden"/>
+        </Menu>
+    </Grid>
+</Window>

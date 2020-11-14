@@ -1,0 +1,117 @@
+﻿<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="About" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Width="500" >
+        <Expander Header="ConfigMgr Remote Compliance" IsExpanded="True">
+                <RichTextBox Padding="10" IsReadOnly="True" >
+                <FlowDocument>
+                    <Paragraph>
+                        <Run FontWeight="Bold" xml:space="preserve">ConfigMgr Remote Compliance </Run>
+                        <Run>
+                            can be used to view, evaluate and report on Compliance Baselines on a remote computer. It provides similar functionality to the Configurations tab of the Configuration Manager Control Panel, but for remote computers.
+                        </Run>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Expander>
+        <Expander Header="Version">
+                <RichTextBox Padding="10" IsReadOnly="True">
+                <FlowDocument>
+                    <Paragraph >
+                        <Run>1.2</Run>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Expander>
+            <Expander Header="Release Date">
+                <RichTextBox Padding="10" IsReadOnly="True">
+                    <FlowDocument>
+                        <Paragraph >
+                            <Run>15th March 2017</Run>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Expander>
+            <Expander Header="Change History">
+                <RichTextBox Padding="5" IsDocumentEnabled="True" IsReadOnly="True">
+                    <FlowDocument>
+                        <Paragraph x:Name="PG_CH" >
+                            <DataGrid x:Name="DG_CH" AutoGenerateColumns="True" CanUserAddRows="false" IsReadOnly = "True" Height="auto" Width="auto" ItemsSource="{Binding [1].DefaultView}">
+
+                            </DataGrid>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Expander>
+            <Expander Header="Author">
+                <RichTextBox Padding="10" IsDocumentEnabled="True" IsReadOnly="True">
+                    <FlowDocument>
+                        <Paragraph >
+                            <Run FontWeight="Bold">Trevor Jones</Run>
+                            <LineBreak/>
+                            <Run xml:space="preserve">Blog: </Run>
+                            <Hyperlink x:Name="BlogLink" NavigateUri="http://smsagent.wordpress.com">http://smsagent.wordpress.com</Hyperlink>
+                            <LineBreak/>
+                            <Run>Twitter: @trevor_smsagent</Run>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Expander>
+            <Expander Header="Source Code">
+                <RichTextBox Padding="10" IsDocumentEnabled="True" IsReadOnly="True">
+                    <FlowDocument>
+                        <Paragraph >
+                            <Run FontWeight="Bold" xml:space="preserve">ConfigMgr Remote Compliance </Run>
+                            <Run xml:space="preserve">is a WPF application coded in PowerShell. </Run>
+                            <LineBreak/>
+                            <Run xml:space="preserve">WPF styling is provided by </Run>
+                            <Hyperlink x:Name="MDLink" NavigateUri="http://materialdesigninxaml.net/">Material Design In Xaml Toolkit.</Hyperlink>
+                            <LineBreak/>
+                            <Run xml:space="preserve">The source code for this application is available on </Run>
+                            <Hyperlink x:Name="GitLink" NavigateUri="https://github.com/SMSAgentSoftware/ConfigMgr-Remote-Compliance">GitHub.</Hyperlink>
+                            <Run xml:space="preserve"> Code contributions are welcome.</Run>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Expander>
+             <Expander Header="Donation">
+                <RichTextBox Padding="10" IsDocumentEnabled="True" IsReadOnly="True">
+                    <FlowDocument>
+                        <Paragraph >
+                            <StackPanel>
+                                <TextBlock Width="auto" TextWrapping="Wrap">
+                                This application is free for both personal and commercial use. If it is useful, please consider a donation of any amount. Thank you!
+                                </TextBlock>
+                                <TextBlock HorizontalAlignment="Center">
+                                    <Hyperlink x:Name="PayPalLink" NavigateUri="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3T8U3EUTDKK7U">
+                                        <Image Source="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" Width="150" Height="60" HorizontalAlignment="Center" ToolTip="PayPal – The safer, easier way to pay online!"/>
+                                    </Hyperlink>
+                                </TextBlock>
+                            </StackPanel>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</Window>

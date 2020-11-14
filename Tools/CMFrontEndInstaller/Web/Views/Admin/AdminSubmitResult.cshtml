@@ -1,0 +1,16 @@
+﻿@if (Model.Key == true)
+{
+    <h3 style="text-align: center; color:Green" >The action was sucessfull!</h3>
+    <p>@Model.Value</p>
+}
+else
+{
+    <h3 style="text-align: center; color:Red" >The action was UNsucessfull!</h3>
+    <p>@Model.Value</p>
+}
+
+<script>
+    setTimeout(function () {
+        window.location.href = "/Admin";
+    }, 3000);
+</script>

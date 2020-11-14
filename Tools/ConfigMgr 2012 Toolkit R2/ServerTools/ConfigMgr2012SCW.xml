@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SCWKBRegistrationInfo OSMajorVersion="6"
+                       OSMinorVersion="1"
+                       ServicePackMajorVersion="1"
+                       ServicePackMinorVersion="0">
+  <SCWKnowledgeBase>
+    <Roles>
+      <!-- ************************************************************ -->
+      <!-- Central Administration Site                                  -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+        Type="Server"
+        Name="SMSCentralSite">
+        <Satisfiable FunctionName="IsSCCMCentralSite" DLLPath="%windir%\security\msscw\bin\configmgrscwhelper.dll" />
+        <Selected Value="TRUE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="SMS_SITE_COMPONENT_MANAGER"/>
+          <Service Name="SMS_SITE_VSS_WRITER"/>
+          <Service Name="SMS_SITE_SQL_BACKUP"/>
+          <Service Name="MSIServer"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-SQL-1433"/>
+          <FirewallRule Id="sccm-SQL-4022"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- Primary Site Server                                          -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSPrimarySite">
+        <Satisfiable FunctionName="IsSCCMPrimarySite" DLLPath="%windir%\security\msscw\bin\configmgrscwhelper.dll" />
+        <Selected Value="TRUE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="SMS_SITE_COMPONENT_MANAGER"/>
+          <Service Name="SMS_SITE_VSS_WRITER"/>
+          <Service Name="SMS_SITE_SQL_BACKUP"/>
+          <Service Name="MSIServer"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-SQL-1433"/>
+          <FirewallRule Id="sccm-SQL-4022"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- Secondary Site Server                                        -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSSecondarySite">
+        <Satisfiable FunctionName="IsSCCMSecondarySite" DLLPath="%windir%\security\msscw\bin\configmgrscwhelper.dll" />
+        <Selected Value="TRUE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="SMS_SITE_COMPONENT_MANAGER"/>
+          <Service Name="MSIServer"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-SQL-1433"/>
+          <FirewallRule Id="sccm-SQL-4022"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- MP Site System                                               -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSManagementPoint">
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="CcmExec"/>
+          <Service Name="BITS"/>
+          <Service Name="MSIServer"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="SENS"/>
+          <Service Name="Schedule"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="W3SVC"/>
+          <Service Name="SMS_NOTIFICATION_SERVER"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-w3s-in"/>
+          <FirewallRule Id="sccm-https-443"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+          <FirewallRule Id="sccm-notificationserver-in"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- Enrollment proxy Point                                       -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSEnrollmentProxyPoint">
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="MSIServer"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="W3SVC"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+
+      <!-- ************************************************************ -->
+      <!-- Enrollment Point                                             -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSEnrollmentPoint">
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="MSIServer"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="W3SVC"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+
+      <!-- ************************************************************ -->
+      <!-- Application Catalog Website Point                            -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSCatalogWebSitePoint">
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="MSIServer"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="W3SVC"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+
+      <!-- ************************************************************ -->
+      <!-- Application Catalog Web Service Point                        -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSCatalogWebSvcPoint">
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="MSIServer"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="W3SVC"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+
+      <!-- ************************************************************ -->
+      <!-- RSP Site System                                               -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSReportingPoint">
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="ReportServer"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="W3SVC"/>
+          <Service Name="lanmanserver"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-w3s-in"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+
+      <!-- ************************************************************ -->
+      <!-- FSP Site System                                              -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSFallbackStatusPoint">
+        <Selected Value="FALSE"/>
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+          </Roles>
+        </DependsOn>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="MSIServer"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- SMP Site System                                              -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSStateMigrationPoint">
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="MSIServer"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- SUP Site System                                              -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSSoftwareUpdatePoint">
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+            <Role Name="WAS"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="BITS"/>
+          <Service Name="MSIServer"/>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="WsusService"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- SHV Site System                                              -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSSystemHealthValidator">
+        <DependsOn>
+          <Roles>
+            <Role Name="NPS"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_SYSTEM_HEALTH_VALIDATOR"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="MSIServer"/>
+          <Service Name="lanmanserver"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- AI Web Synchroniazation Role                                 -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+          Type="Server"
+          Name="SMSAIPoint">
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="AI_UPDATE_SERVICE_POINT"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="lanmanserver"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- Out of Band Service Point                                    -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Server"
+            Name="SMSOutOfBandServicePoint">
+        <Satisfiable FunctionName="IsSCCMOOBPoint" DLLPath="%windir%\security\msscw\bin\configmgrscwhelper.dll" />
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="WinRM"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-oob-in"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- Configuration Manager client                                 -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+            Type="Client"
+            Name="SMSClient">
+        <Selected Value="DEFAULT"/>
+        <Services>
+          <Service Name="CcmExec"/>
+          <Service Name="BITS"/>
+          <Service Name="smstsmgr"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="MSIServer"/>
+          <Service Name="SENS"/>
+          <Service Name="Winmgmt"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+        </Firewall>
+      </Role>
+      <!-- ************************************************************ -->
+      <!-- Endpoint Protection point                                    -->
+      <!-- ************************************************************ -->
+      <Role Status="Enabled"
+         Type="Server"
+         Name="SMSEndpoint">
+        <DependsOn>
+          <Roles>
+            <Role Name="Web"/>
+          </Roles>
+        </DependsOn>
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="SMS_EXECUTIVE"/>
+          <Service Name="MSIServer"/>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="lanmanworkstation"/>
+          <Service Name="W3SVC"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-w3s-in"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Role>
+    </Roles>
+    <Tasks>
+      <!-- ************************************************************ -->
+      <!-- Distribution Point (Task) Non-BITS Enabled                   -->
+      <!-- ************************************************************ -->
+      <Task Name="SMSDistributionPoint">
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="RemoteRegistry"/>
+          <Service Name="Winmgmt"/>
+          <Service Name="lanmanserver"/>
+          <Service Name="W3SVC"/>
+          <Service Name="lanmanworkstation"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+          <FirewallRule Id="sccm-smb-445-in"/>
+          <FirewallRule Id="sccm-smb-445-out"/>
+          <FirewallRule Id="sccm-netbtsession-139-in"/>
+          <FirewallRule Id="sccm-netbtsession-139-out"/>
+          <FirewallRule Id="sccm-wmi-winmgmt-in-tcp"/>
+        </Firewall>
+      </Task>
+      <!-- ************************************************************ -->
+      <!-- Admin UI(Task)                                               -->
+      <!-- ************************************************************ -->
+      <Task Name="SMSAdminUI">
+        <Selected Value="FALSE"/>
+        <Services>
+          <Service Name="EventSystem"/>
+        </Services>
+        <Firewall>
+          <FirewallRule Id="sccm-rpcepm-135-in"/>
+          <FirewallRule Id="sccm-rpcepm-135-out"/>
+        </Firewall>
+      </Task>
+    </Tasks>
+    <Services>
+      <Service Name="smstsmgr">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Manual</Startup_Default>
+      </Service>
+      <Service Name="SMS_NOTIFICATION_SERVER">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Manual</Startup_Default>
+      </Service>
+      <Service Name="SMS_SITE_VSS_WRITER">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Automatic</Startup_Default>
+      </Service>
+      <Service Name="SMS_SITE_SQL_BACKUP">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Automatic</Startup_Default>
+      </Service>
+      <Service Name="SMS_EXECUTIVE">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Automatic</Startup_Default>
+      </Service>
+      <Service Name="SMS_SITE_BACKUP">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Manual</Startup_Default>
+      </Service>
+      <Service Name="SMS_SITE_COMPONENT_MANAGER">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Automatic</Startup_Default>
+      </Service>
+      <Service Name="CcmExec">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Automatic</Startup_Default>
+      </Service>
+      <Service Name="SMS_SYSTEM_HEALTH_VALIDATOR">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Automatic</Startup_Default>
+      </Service>
+      <Service Name="AI_UPDATE_SERVICE_POINT">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Automatic</Startup_Default>
+      </Service>
+      <Service Name="WsusService">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Automatic</Startup_Default>
+      </Service>
+      <Service Name="Winmgmt">
+        <Optional>TRUE</Optional>
+        <Startup_Default>Automatic</Startup_Default>
+      </Service>
+    </Services>
+    <Firewall>
+      <FirewallRules>
+        <FirewallRule
+  Id="sccm-smb-445-in"
+Name="Server Message Block(In)"
+Description="open port 445 for Server Message Block TCP"
+Group="SCCM network protocols"
+ProtocolKeyword="TCP"
+Direction="Inbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="445"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+  Id="sccm-smb-445-out"
+Name="Server Message Block(Out)"
+Description="open port 445 for Server Message Block TCP"
+Group="SCCM network protocols"
+ProtocolKeyword="TCP"
+Direction="Outbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="445"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+  Id="sccm-netbtsession-139-in"
+Name="TCP/IP (NetBT) Session(In)"
+Description="open port 139 for TCP/IP (NetBT) session"
+Group="SCCM network protocols"
+ProtocolKeyword="TCP"
+Direction="Inbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="139"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+  Id="sccm-netbtsession-139-out"
+Name="TCP/IP (NetBT) Session(Out)"
+Description="open port 139 for TCP/IP (NetBT) session"
+Group="SCCM network protocols"
+ProtocolKeyword="TCP"
+Direction="Outbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="139"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+  Id="sccm-rpcepm-135-in"
+Name="RPC Endpoint Mapper(In)"
+Description="open port 135 for RPC Endpoint Mapper"
+Group="SCCM network protocols"
+ProtocolKeyword="TCP"
+Direction="Inbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="135"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+  Id="sccm-rpcepm-135-out"
+Name="RPC Endpoint Mapper(Out)"
+Description="open port 135 for RPC Endpoint Mapper"
+Group="SCCM network protocols"
+ProtocolKeyword="TCP"
+Direction="Outbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="135"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+Id="sccm-oob-in"
+Name="Configuration Manager Out of Band Service (TCP in)"
+Description="This port is used for oob service"
+Group="SCCM network protocols"
+ProtocolKeyword="TCP"
+Direction="Inbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <CustomPort DefaultValue="9971" FunctionName="GetOOBPort" DLLPath="%windir%\security\msscw\bin\configmgrscwhelper.dll"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+    Id="sccm-w3s-in"
+    Name="World Wide Web Services(HTTP In)"
+    Description="This port is used for World Wide Web Services(HTTP) connect"
+    Group="SCCM network protocols"
+    ProtocolKeyword="TCP"
+    Direction="Inbound"
+    Enabled="True"
+    Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="80"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+  Id="sccm-https-443"
+  Name="Hypertext Transfer Protocol over Secure Socket Layer(HTTPS)"
+  Description="This port is used for https connect"
+  Group="SCCM network protocols"
+  ProtocolKeyword="TCP"
+  Direction="Inbound"
+  Enabled="True"
+  Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="443"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+Id="sccm-SQL-1433"
+Name="SQL Server Default Port"
+Description="This port is used for SQL Server default connect"
+Group="SCCM network protocols"
+ProtocolKeyword="TCP"
+Direction="Inbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="1433"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+Id="sccm-SQL-4022"
+Name="SQL Server Service Broker port "
+Description="This port is used for SQL Server Broker connect"
+Group="SCCM network protocols"
+ProtocolKeyword="TCP"
+Direction="Inbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <Port Value="4022"/>
+          </LocalPorts>
+        </FirewallRule>
+        <FirewallRule
+       Id="sccm-wmi-winmgmt-in-tcp"
+		Name="Windows Management Instrumentation (WMI-TCP-In)"
+		Description="This port is used for Windows Management Instrumentation (WMI-TCP-In) connect"
+		Group="SCCM network protocols"
+		ProtocolKeyword="TCP"
+		Direction="Inbound"
+		Program="%systemroot%\system32\svchost.exe"
+		Service="winmgmt"
+		Enabled="True"
+		Action="AllowConnections">
+        </FirewallRule>
+        <FirewallRule
+  Id="sccm-notificationserver-in"
+Name="Notification Server (In)"
+Description="This port is used for Notification Server TCP Inbound"
+Group="SCCM network protocols"
+Program="%systemroot%\system32\dllhost.exe"
+ProtocolKeyword="TCP"
+Direction="Inbound"
+Enabled="True"
+Action="AllowConnections">
+          <LocalPorts>
+            <CustomPort DefaultValue="10123" FunctionName="GetNotificationServerPort" DLLPath="%windir%\security\msscw\bin\configmgrscwhelper.dll"/>
+          </LocalPorts>
+        </FirewallRule>
+      </FirewallRules>
+    </Firewall>
+  </SCWKnowledgeBase>
+  <SCWLocalization CultureName="en-US">
+    <RoleLocalization>
+      <Role Name="SMSCentralSite">
+        <DisplayName>Configuration Manager Central Administration Site</DisplayName>
+        <Description>The central administration site coordinates intersite data replication across the hierarchy by using Configuration Manager database replication. It also enables the administration of hierarchy-wide configurations for client agents, discovery, and other operations.</Description>
+      </Role>
+      <Role Name="SMSPrimarySite">
+        <DisplayName>Configuration Manager Primary Site Server</DisplayName>
+        <Description>A Configuration Manager site that has clients assigned to it and that processes client-generated data.</Description>
+      </Role>
+      <Role Name="SMSSecondarySite">
+        <DisplayName>Configuration Manager Secondary Site Server</DisplayName>
+        <Description>A child of a primary Configuration Manager site.</Description>
+      </Role>
+      <Role Name="SMSManagementPoint">
+        <DisplayName>Configuration Manager Management Point</DisplayName>
+        <Description>A Management Point serves as the primary point of contact between Advanced Client computers and the Configuration Manager site server.</Description>
+      </Role>
+      <Role Name="SMSCatalogWebSitePoint">
+        <DisplayName>Configuration Manager Application Catalog Website Point</DisplayName>
+        <Description>A site system role that provides users with a list of available software from the Application Catalog.</Description>
+      </Role>
+      <Role Name="SMSCatalogWebSvcPoint">
+        <DisplayName>Configuration Manager Application Catalog Web Service Point</DisplayName>
+        <Description>The application catalog web service point provides integration services between the Configuration Manager site and application catalog website.</Description>
+      </Role>
+      <Role Name="SMSReportingPoint">
+        <DisplayName>Configuration Manager Reporting Point</DisplayName>
+        <Description>A site system role that integrates with SQL Server Reporting Services to create and manage reports for Configuration Manager.</Description>
+      </Role>
+      <Role Name="SMSFallbackStatusPoint">
+        <DisplayName>Configuration Manager Fallback Status Point</DisplayName>
+        <Description>A site system role that helps you monitor client installation and identify the clients that are unmanaged because they cannot communicate with their management point.</Description>
+      </Role>
+      <Role Name="SMSStateMigrationPoint">
+        <DisplayName>Configuration Manager State Migration Point</DisplayName>
+        <Description>A site system role that stores user state data when a computer is migrated to a new operating system.</Description>
+      </Role>
+      <Role Name="SMSSoftwareUpdatePoint">
+        <DisplayName>Configuration Manager Software Update Point</DisplayName>
+        <Description>A site system role that integrates with Windows Server Update Services (WSUS) to provide software updates to Configuration Manager clients.</Description>
+      </Role>
+      <Role Name="SMSSystemHealthValidator">
+        <DisplayName>Configuration Manager System Health Validator Point</DisplayName>
+        <Description>A site system role that validates Configuration Manager Network Access Protection (NAP) policies. It must be installed on a NAP health policy server.</Description>
+      </Role>
+      <Role Name="SMSAIPoint">
+        <DisplayName>Configuration Manager Asset Intelligence Synchronization Point</DisplayName>
+        <Description>A site system role that validates Configuration Manager Network Access Protection (NAP) policies. It must be installed on a NAP health policy server.</Description>
+      </Role>
+      <Role Name="SMSOutOfBandServicePoint">
+        <DisplayName>Configuration Manager Out of Band Service Point</DisplayName>
+        <Description>A site system role that provisions and configures Intel AMT-based computers for out of band management.</Description>
+      </Role>
+      <Role Name="SMSClient">
+        <DisplayName>Configuration Manager Client</DisplayName>
+        <Description>A Client provides Configuration Manager services and Configuration Manager application functions.</Description>
+      </Role>
+      <Role Name="SMSEnrollmentProxyPoint">
+        <DisplayName>Configuration Manager Enrollment Proxy Point</DisplayName>
+        <Description>An enrollment proxy point manages enrollment requests from mobile devices so that they can be managed by Configuration Manager.</Description>
+      </Role>
+      <Role Name="SMSEnrollmentPoint">
+        <DisplayName>Configuration Manager Enrollment Point</DisplayName>
+        <Description>An enrollment point uses PKI certificates to complete mobile device enrollment and provision AMT-based computers.</Description>
+      </Role>
+      <Role Name="SMSEndpoint">
+        <DisplayName>Configuration Manager Endpoint Protection point</DisplayName>
+        <Description>A site system role that Configuration Manager uses to accept the Endpoint Protection license terms and to configure the default membership for Microsoft Active Protection Service.</Description>
+      </Role>
+    </RoleLocalization>
+    <ServiceLocalization>
+      <Service Name="SMS_EXECUTIVE">
+        <DisplayName>Configuration Manager Executive</DisplayName>
+        <Description>The primary Configuration Manager service that accesses and updates the database and manages many different process threads.</Description>
+      </Service>
+      <Service Name="SMS_SITE_BACKUP">
+        <DisplayName>Configuration Manager Site Backup</DisplayName>
+        <Description>The Configuration Manager site backup process.</Description>
+      </Service>
+      <Service Name="SMS_SITE_COMPONENT_MANAGER">
+        <DisplayName>Configuration Manager Site Component Manager</DisplayName>
+        <Description>The Configuration Manager site component manager process.</Description>
+      </Service>
+      <Service Name="SMS_SITE_VSS_WRITER">
+        <DisplayName>Configuration Manager Site VSS Writer</DisplayName>
+        <Description>The Configuration Manager VSS writer process.</Description>
+      </Service>
+      <Service Name="SMS_SITE_SQL_BACKUP">
+        <DisplayName>Configuration Manager Site SQL Backup</DisplayName>
+        <Description>The Configuration Manager SQL Server backup process.</Description>
+      </Service>
+      <Service Name="AI_UPDATE_SERVICE_POINT">
+        <DisplayName>Configuration Manager Asset Intelligence Synchronization Point</DisplayName>
+        <Description>The Configuration Manager Asset Intelligence Synchronization Point process.</Description>
+      </Service>
+      <Service Name="SMS_SYSTEM_HEALTH_VALIDATOR">
+        <DisplayName>Configuration Manager System Health Validator</DisplayName>
+        <Description>The Configuration Manager System Health Validator process.</Description>
+      </Service>
+      <Service Name="CcmExec">
+        <DisplayName>Configuration Manager Agent Host</DisplayName>
+        <Description>The Configuration Manager client agent process.</Description>
+      </Service>
+      <Service Name="smstsmgr">
+        <DisplayName>Configuration Manager Task Sequence Manager</DisplayName>
+        <Description>The Configuration Manager task sequence process.</Description>
+      </Service>
+      <Service Name="SMS_NOTIFICATION_SERVER">
+        <DisplayName>Configuration Manager Notification Server</DisplayName>
+        <Description>The Configuration Manager notification serve process.</Description>
+      </Service>
+    </ServiceLocalization>
+    <TaskLocalization>
+      <Task Name="SMSDistributionPoint">
+        <DisplayName>Configuration Manager Distribution Point</DisplayName>
+        <Description>The Configuration Manager Distribution Point. By default, the SCW tool defines the enabled Distribution Point services and ports.</Description>
+        <Details>A site system role that contains source files for clients to download, such as application content, software packages, software updates, operating system images, and boot images.</Details>
+      </Task>
+      <Task Name="SMSAdminUI">
+        <DisplayName>Configuration Manager Console</DisplayName>
+        <Description>Allows the user to administer Configuration Manager.</Description>
+        <Details>The primary interface you use to configure, run, and access Configuration Manager features and tools.</Details>
+      </Task>
+    </TaskLocalization>
+  </SCWLocalization>
+</SCWKBRegistrationInfo>

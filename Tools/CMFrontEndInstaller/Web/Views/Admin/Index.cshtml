@@ -1,0 +1,42 @@
+﻿@model List<FrontendDataLib.Department>
+
+<h3>Admin Groups</h3>
+        
+@foreach (var department in Model)
+{
+    <div class="infoBox">
+        <p class="infoBoxTitle">@department.ADGroupName</p>
+        <form action="/Admin/EditDept" method="POST">
+            <div class="row admin">
+                <label><b>Viewable Collections</b></label>
+                <div class="rowData">
+                    <select multiple name="deptCollections" size="5">
+                        @foreach (var collection in department.Collections)
+                        {
+                            <option value="@collection.Id"@(collection.Selected ? "selected" : "")>@collection.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row admin">
+                <label><b>Enabled</b></label>
+                <div class="rowData">
+                    <input type="radio" name="enable" value="true" @(department.Enabled ? "checked" : "")/> Yes
+                    <input type="radio" name="enable" value="false" @(department.Enabled == false ? "checked" : "")/> No
+                </div>
+            </div>
+            <div class="row admin">
+                <label><b>Actions</b></label>
+                <div class="rowData">
+                    <div style='float:left'>
+                        <input type="submit" value="Save"/>
+                        <input type="hidden" value="@department.Id" name="deptID" />
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
+<a href="@Url.Action("Index","Elmah")">Error Logs</a>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Configuration Manager Web Frontend</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        
+            @RenderBody()
+
+            @Scripts.Render("~/bundles/jquery")
+
+            @Scripts.Render("~/bundles/jqueryui")
+            @Scripts.Render("~/bundles/jqueryevent")
+            @if (Request.IsAuthenticated && (ViewData["noGrid"] == null || (bool)ViewData["noGrid"] == false))
+            {
+                @Scripts.Render("~/bundles/slickgrid")
+                @Scripts.Render("~/bundles/dynatree")
+                @Scripts.Render("~/bundles/knockout")
+                @Scripts.Render("~/bundles/signalr")
+                <script type="text/javascript" src="signalr/hubs"></script>
+
+                if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "User")
+                {
+                    @Scripts.Render("~/bundles/frontend_users")
+                }
+                else
+                {
+                    @Scripts.Render("~/bundles/frontend")
+                }
+            }
+            @RenderSection("scripts", required: false)
+</body>
+</html>
