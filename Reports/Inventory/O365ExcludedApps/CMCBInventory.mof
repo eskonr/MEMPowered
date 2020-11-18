@@ -1,0 +1,12 @@
+// RegKeyToMOF by Mark Cochrane (with help from Skissinger, SteveRac, Jonas Hettich, Kent Agerlund & Barker)
+// this section tells the inventory agent what to report to the server
+// 16/10/2018 3:05:03 PM
+#pragma namespace ("\\\\.\\root\\cimv2\\SMS")
+#pragma deleteclass("Configuration", NOFAIL)
+[SMS_Report(TRUE),SMS_Group_Name("o365ExcludedApps"),SMS_Class_ID("o365ExcludedApps")]
+Class Configuration: SMS_Class_Template
+{
+[SMS_Report(TRUE),key] string KeyName;
+[SMS_Report(TRUE)] String ProPlus2019RetailExcludedApps;
+[SMS_Report(TRUE)] String O365ProPlusRetailExcludedApps;
+};

@@ -1,0 +1,23 @@
+// RegKeyToMOF by Mark Cochrane (with help from Skissinger, SteveRac, Jonas Hettich, Kent Agerlund & Barker)
+// this section tells the inventory agent what to collect
+// 16/10/2018 3:05:03 PM
+
+#pragma namespace ("\\\\.\\root\\cimv2")
+#pragma deleteclass("Configuration", NOFAIL)
+[DYNPROPS]
+Class Configuration
+{
+[key] string KeyName;
+String ProPlus2019RetailExcludedApps;
+String O365ProPlusRetailExcludedApps;
+String VisioPro2019RetailExcludedApps;
+};
+
+[DYNPROPS]
+Instance of Configuration
+{
+KeyName="RegKeyToMOF";
+[PropertyContext("Local|HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration|ProPlus2019Retail.ExcludedApps"),Dynamic,Provider("RegPropProv")] ProPlus2019RetailExcludedApps;
+[PropertyContext("Local|HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration|VisioPro2019Retail.ExcludedApps"),Dynamic,Provider("RegPropProv")] VisioPro2019RetailExcludedApps;
+[PropertyContext("Local|HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration|VisioPro2019Retail.ExcludedApps"),Dynamic,Provider("RegPropProv")] O365ProPlusRetailExcludedApps;
+};
