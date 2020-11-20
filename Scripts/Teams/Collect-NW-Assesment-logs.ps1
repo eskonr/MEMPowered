@@ -67,7 +67,7 @@ $Subject = "Network assesment results for $username"
 send-MailMessage -From $From -To $To -SmtpServer "yoursmtpserverName" -Subject $Subject -Body $Body -Attachments "$TempPath\$username-$timestamp.zip"
 #Cleanup temporary files/folders
 Remove-Item -Path "C:\Users\$username\AppData\Local\Microsoft Skype for Business Network Assessment Tool\connectivity_results.txt" -Force -ErrorAction SilentlyContinue
-Remove-Item -Path "C:\Users\$username\AppData\Local\Microsoft Skype for Business Network Assessment Tool\\performance_results.tsv" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "C:\Users\$username\AppData\Local\Microsoft Skype for Business Network Assessment Tool\performance_results.tsv" -Force -ErrorAction SilentlyContinue
 Remove-Item $TempPath\* -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item "$TempPath\$username-$timestamp.zip" -Force -ErrorAction SilentlyContinue
 }
