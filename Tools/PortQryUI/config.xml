@@ -1,0 +1,81 @@
+<!--
+Format
+<Services>
+  <Service Name="Services Name">
+    <Port Name="service name bound to the port" Value="Port number and/or port ranges seperated by commas" Protocol="TCP|UDP|Both"/>
+  </Service>
+</Services>
+-->
+<Services>
+  <Service Name="Domains and Trusts">
+    <Port Name="RPC" Value="135" Protocol="TCP"/>
+    <Port Name="LDAP" Value="389" Protocol="BOTH"/>
+    <Port Name="LDAP SSL" Value="636" Protocol="TCP"/>
+    <Port Name="LDAP GC" Value="3268" Protocol="TCP"/>
+    <Port Name="LDAP GC SSL" Value="3269" Protocol="TCP"/>
+    <Port Name="DNS" Value="53" Protocol="BOTH"/>
+    <Port Name="Kerberos" Value="88" Protocol="BOTH"/>
+    <Port Name="SMB" Value="445" Protocol="TCP"/>
+    <Port Name="NetBIOS Name" Value="137" Protocol="UDP"/>
+    <Port Name="NetBIOS NetLogon Browsing" Value="138" Protocol="UDP"/>
+    <Port Name="NetBIOS Session" Value="139" Protocol="TCP"/>
+    <Port Name="WINS Replication" Value="42" Protocol="TCP"/>
+  </Service>
+  <Service Name="IPSec">
+    <Port Name="ISAKMP" Value="500" Protocol="UDP"/>
+  </Service>
+  <Service Name="Networking">
+    <Port Name="PPTP" Value="1723" Protocol="TCP"/>
+    <Port Name="DNS" Value="53" Protocol="BOTH"/>
+    <Port Name="DHCP" Value="67" Protocol="BOTH"/>
+    <Port Name="WINS" Value="137" Protocol="BOTH"/>
+    <Port Name="SNMP" Value="161-162" Protocol="UDP"/>
+    <Port Name="Winsock Proxy Client" Value="1745" Protocol="UDP"/>
+  </Service>
+  <Service Name="SQL Service">
+    <Port Name="ms-sql-s service" Value="1434" Protocol="UDP"/>
+    <Port Name="ms-sql-s service" Value="1433" Protocol="TCP"/>
+  </Service>
+  <Service Name="WEB Service">
+    <Port Name="HTTP" Value="80" Protocol="TCP"/>
+    <Port Name="FTP" Value="20-21" Protocol="TCP"/>
+    <Port Name="SMTP" Value="25" Protocol="TCP"/>
+    <Port Name="POP3" Value="110" Protocol="TCP"/>
+    <Port Name="Telnet" Value="23" Protocol="TCP"/>
+  </Service>
+  <Service Name="Exchange Server">
+    <Port Name="LDAP" Value="389,379,390,3268" Protocol="TCP"/>
+    <Port Name="LDAP SSL" Value="636,3269" Protocol="TCP"/>
+    <Port Name="IMAP4" Value="143" Protocol="TCP"/>
+    <Port Name="IMAP4 SSL" Value="993" Protocol="TCP"/>
+    <Port Name="POP3" Value="110" Protocol="TCP"/>
+    <Port Name="POP3 SSL" Value="995" Protocol="TCP"/>
+    <Port Name="NNTP" Value="119" Protocol="TCP"/>
+    <Port Name="NNTP SSL" Value="563" Protocol="TCP"/>
+    <Port Name="HTTP" Value="80" Protocol="TCP"/>
+    <Port Name="HTTP SSL" Value="443" Protocol="TCP"/>
+    <Port Name="SMTP" Value="25" Protocol="TCP"/>
+    <Port Name="SMTP SSL" Value="465" Protocol="TCP"/>
+    <Port Name="SMTP LSA" Value="691" Protocol="TCP"/> 
+    <Port Name="RVP" Value="80" Protocol="TCP"/>
+    <Port Name="IRC IRCX" Value="6667" Protocol="TCP"/>
+    <Port Name="IRC SSL" Value="994" Protocol="TCP"/>
+    <Port Name="MS-RPC" Value="135" Protocol="TCP"/>
+    <Port Name="T.120" Value="1503" Protocol="TCP"/>
+    <Port Name="ULS" Value="522" Protocol="TCP"/>
+    <Port Name="H.323" Value="1720" Protocol="TCP"/>
+    <Port Name="Audio" Value="1731" Protocol="TCP"/>
+    <Port Name="DNS" Value="53" Protocol="TCP"/>
+  </Service>
+  <Service Name="Netmeeting">
+    <Port Name="Internet Locator Server" Value="389" Protocol="TCP"/>
+    <Port Name="User Location Service" Value="522" Protocol="TCP"/>
+    <Port Name="H.120" Value="1503" Protocol="TCP"/>
+    <Port Name="H.323 call setup" Value="1720" Protocol="TCP"/>
+    <Port Name="Audio call control" Value="1731" Protocol="TCP"/>
+  </Service>
+  <Service Name="Miscellaneous">
+    <Port Name="Terminal Server" Value="3389" Protocol="TCP"/>
+  </Service>
+</Services>
+
