@@ -1,0 +1,25 @@
+Sample commands to use for the Microsoft Win32 Content Prep Tool:
+
+IntuneWinAppUtil -h
+This will show usage information for the tool.
+IntuneWinAppUtil -c <setup_folder> -s <source_setup_file> -o <output_folder> <-q>
+This will generate the .intunewin file from the specified source folder and setup file.
+For MSI setup file, this tool will retrieve required information for Intune.
+If -q is specified, it will be in quiet mode. If the output file already exists, it will be overwritten.
+Also if the output folder does not exist, it will be created automatically.
+IntuneWinAppUtil
+If no parameter is specified, this tool will guide you to input the required parameters step by step.
+Command-line parameters available
+
+-h Help
+-c <setup_folder> Setup folder for all setup files. All files in this folder will be compressed into .intunewin file.
+Only the setup files for this app should be in this folder.
+-s <setup_file> Setup file (e.g. setup.exe or setup.msi).
+-o <output_file> Output folder for the generated .intunewin file.
+
+
+IntuneWinAppUtil -c "C:\Temp\Intune Packages\SCCM 1810 Client" -s ccmsetup.exe -o "C:\Temp\Intune Packages\Win32_apps"
+
+
+
+IntuneWinAppUtil -c "C:\Temp\Intune Packages\Google Chrome" -s GoogleChromeStandaloneEnterprise.msi -o "C:\Temp\Intune Packages\Win32_apps" /q /norestart
