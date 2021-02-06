@@ -1,0 +1,253 @@
+﻿<Styles version="2.0" FontName="Consolas" BackColor="FF2D2D30" MarginColor="FF404040" ColumnGuideColor="FF00CED1" CurrentLineHighlightColor="FFC0C0C0" LineModificationSavedColor="FF6CE26C" LineModificationUnavedColor="FFFFEE62">
+  <Language name="PowerShell" version="1.2">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Command" Bold="True" Italic="False" Underline="False" ForeColor="FF87CEFA" BackColor="0" />
+    <Style name="Alias" Bold="True" Italic="False" Underline="False" ForeColor="FFC00000" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Variable" Bold="False" Italic="False" Underline="False" ForeColor="FFF08080" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="String" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Comment" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Function" Bold="False" Italic="False" Underline="False" ForeColor="FF00FFFF" BackColor="0" />
+    <Style name="Parameter" Bold="False" Italic="False" Underline="False" ForeColor="FF3399FF" BackColor="0" />
+    <Style name="Unknown Parameter" Bold="False" Italic="False" Underline="False" ForeColor="FFC0C0C0" BackColor="0" />
+    <Style name="Command As Parameter" Bold="False" Italic="True" Underline="False" ForeColor="FF87CEFA" BackColor="0" />
+    <Style name="Code Snippet Field" Bold="False" Italic="False" Underline="False" ForeColor="0" BackColor="FF394953" />
+    <Style name="Highlighted Reference" Bold="False" Italic="False" Underline="False" ForeColor="0" BackColor="FF4155B1" />
+    <Style name="Type" Bold="False" Italic="False" Underline="False" ForeColor="FF48D1CC" BackColor="0" />
+    <Style name="Parameter Attribute" Bold="False" Italic="False" Underline="False" ForeColor="FF4682B4" BackColor="0" />
+    <Style name="Unknown Command" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+    <Style name="External Tool" Bold="True" Italic="False" Underline="False" ForeColor="FF4169E1" BackColor="0" />
+    <Style name="Command Argument" Bold="False" Italic="False" Underline="False" ForeColor="FFFFE4E1" BackColor="0" />
+    <Style name="Loop Label" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Directive" Bold="False" Italic="False" Underline="False" ForeColor="FF20B2AA" BackColor="0" />
+    <Style name="Bracket Highlighted Text" Bold="False" Italic="False" Underline="False" ForeColor="0" BackColor="FF808080" />
+    <Style name="Highlighted Scope" Bold="False" Italic="False" Underline="False" ForeColor="0" BackColor="FF323240" />
+    <Style name="Brace" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Parenthesis" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+  </Language>
+  <Language name="Plain Text" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+  </Language>
+  <Language name="About" version="1.1">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Header" Bold="True" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Sub Header" Bold="False" Italic="True" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Command" Bold="False" Italic="False" Underline="False" ForeColor="FF1E90FF" BackColor="0" />
+    <Style name="Url Word" Bold="False" Italic="False" Underline="True" ForeColor="FF1E90FF" BackColor="0" />
+  </Language>
+  <Language name="BatchFile" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Label" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Variable" Bold="False" Italic="False" Underline="False" ForeColor="FFF08080" BackColor="0" />
+    <Style name="Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+  </Language>
+  <Language name="C" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Native Type" Bold="False" Italic="False" Underline="False" ForeColor="FF48D1CC" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment URL" Bold="False" Italic="False" Underline="True" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="XML Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+    <Style name="XML Comment Tag" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+    <Style name="XML Comment URL" Bold="False" Italic="False" Underline="True" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="XML Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Pre-Processor Directive Keyword" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Pre-Processor Directive Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="User Defined Identifier" Bold="True" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Path Spec" Bold="False" Italic="False" Underline="False" ForeColor="FF800000" BackColor="0" />
+  </Language>
+  <Language name="C++" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Native Type" Bold="False" Italic="False" Underline="False" ForeColor="FF48D1CC" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment URL" Bold="False" Italic="False" Underline="True" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="XML Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+    <Style name="XML Comment Tag" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+    <Style name="XML Comment URL" Bold="False" Italic="False" Underline="True" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="XML Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Pre-Processor Directive Keyword" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Pre-Processor Directive Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="User Defined Identifier" Bold="True" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Path Spec" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+  </Language>
+  <Language name="C#" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Keyword" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Comment" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Documentation Comment" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+    <Style name="String" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+  </Language>
+  <Language name="CSS" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Property Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Property Default" Bold="False" Italic="False" Underline="False" ForeColor="FFF08080" BackColor="0" />
+    <Style name="Value Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Value Default" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+  </Language>
+  <Language name="HTML" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Entity" Bold="False" Italic="False" Underline="False" ForeColor="FFF08080" BackColor="0" />
+    <Style name="Tag Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Tag Name" Bold="False" Italic="False" Underline="False" ForeColor="FFF08080" BackColor="0" />
+    <Style name="Tag Attribute" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Tag Attribute Value" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Processing Instruction Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Processing Instruction Default" Bold="False" Italic="False" Underline="False" ForeColor="FFDDA0DD" BackColor="0" />
+    <Style name="Declaration Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Declaration Default" Bold="False" Italic="False" Underline="False" ForeColor="FFDDA0DD" BackColor="0" />
+    <Style name="ASP Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF000000" BackColor="FFFFFF80" />
+  </Language>
+  <Language name="INIFile" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Punctuation" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Section Delimiter" Bold="True" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Section Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+  </Language>
+  <Language name="Java" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Native Type" Bold="False" Italic="False" Underline="False" ForeColor="FF48D1CC" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment URL" Bold="False" Italic="False" Underline="True" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Tag" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+  </Language>
+  <Language name="JScript" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Native Type" Bold="False" Italic="False" Underline="False" ForeColor="FF48D1CC" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+  </Language>
+  <Language name="PHP" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Function" Bold="False" Italic="False" Underline="False" ForeColor="FF00FFFF" BackColor="0" />
+    <Style name="Constant" Bold="False" Italic="False" Underline="False" ForeColor="FFDDA0DD" BackColor="0" />
+    <Style name="Variable" Bold="False" Italic="False" Underline="False" ForeColor="FFF08080" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+  </Language>
+  <Language name="Python" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="System Identifier" Bold="False" Italic="False" Underline="False" ForeColor="FFDDA0DD" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+  </Language>
+  <Language name="SQL" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Function" Bold="False" Italic="False" Underline="False" ForeColor="FF00FFFF" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Data Type" Bold="False" Italic="False" Underline="False" ForeColor="FF48D1CC" BackColor="0" />
+    <Style name="Variable" Bold="False" Italic="False" Underline="False" ForeColor="FFF08080" BackColor="0" />
+    <Style name="System Variable" Bold="True" Italic="False" Underline="False" ForeColor="FF90EE90" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Square String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Square String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+  </Language>
+  <Language name="VB.NET" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Native Type" Bold="False" Italic="False" Underline="False" ForeColor="FF48D1CC" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Reserved Word Operator" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="XML Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+    <Style name="XML Comment Tag" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+    <Style name="XML Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Pre-Processor Directive Keyword" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Pre-Processor Directive Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+  </Language>
+  <Language name="VBScript" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Native Type" Bold="False" Italic="False" Underline="False" ForeColor="FF48D1CC" BackColor="0" />
+    <Style name="Operator" Bold="False" Italic="False" Underline="False" ForeColor="FFB0C4DE" BackColor="0" />
+    <Style name="Reserved Word Operator" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Pre-Processor Directive Keyword" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Pre-Processor Directive Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+  </Language>
+  <Language name="XML" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Entity" Bold="False" Italic="False" Underline="False" ForeColor="FFF08080" BackColor="0" />
+    <Style name="Tag Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Tag Name" Bold="False" Italic="False" Underline="False" ForeColor="FFF08080" BackColor="0" />
+    <Style name="Tag Attribute" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="Tag Attribute Value" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Comment Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Comment Default" Bold="False" Italic="False" Underline="False" ForeColor="FF3CB371" BackColor="0" />
+    <Style name="Processing Instruction Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Processing Instruction Default" Bold="False" Italic="False" Underline="False" ForeColor="FFDDA0DD" BackColor="0" />
+    <Style name="Declaration Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Declaration Default" Bold="False" Italic="False" Underline="False" ForeColor="FFDDA0DD" BackColor="0" />
+    <Style name="CDATA Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="CDATA Default" Bold="False" Italic="False" Underline="False" ForeColor="FF808080" BackColor="0" />
+  </Language>
+  <Language name="JSON" version="1.0">
+    <Style name="Text" Bold="False" Italic="False" Underline="False" ForeColor="FFFFFFFF" BackColor="0" />
+    <Style name="Reserved Word" Bold="False" Italic="False" Underline="False" ForeColor="FF00BFFF" BackColor="0" />
+    <Style name="Number" Bold="False" Italic="False" Underline="False" ForeColor="FF9370DB" BackColor="0" />
+    <Style name="String Delimiter" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+    <Style name="String Default" Bold="False" Italic="False" Underline="False" ForeColor="FFFF7F50" BackColor="0" />
+  </Language>
+</Styles>
