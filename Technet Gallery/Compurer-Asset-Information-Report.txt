@@ -1,0 +1,39 @@
+SELECT
+A.Name0,
+MAX (B.SerialNumber0) AS ‘Serialnumber’,
+A.Manufacturer0,
+A.Model0, C.Name0 AS ‘Processor’,
+D.TotalPhysicalMemory0 AS ‘Memory (KBytes)’,
+MAX ( E.Size0 ) AS ‘Size (MBytes)’,
+MAX (F.MACAddress0) AS ‘MAC Adress’,
+MAX (F.IPAddress0) AS ‘IP Adress’,
+G.AD_Site_Name0 AS ‘AD Site’,
+MAX (A.UserName0) AS ‘Last user logged in’,
+H.Caption0 AS ‘Operating System’,
+H.CSDVersion0 AS ‘Service Pack’,
+G.Creation_Date0 AS ‘Creationdate in SMS’,
+I.LastHWScan
+
+FROM
+v_GS_COMPUTER_SYSTEM A,
+v_GS_PC_BIOS B,
+v_GS_PROCESSOR C,
+v_GS_X86_PC_MEMORY D,
+v_GS_DISK E,
+v_GS_NETWORK_ADAPTER_CONFIGUR F,
+v_R_System G,
+v_GS_OPERATING_SYSTEM H,
+v_GS_WORKSTATION_STATUS I
+
+WHERE
+A.ResourceID = B.ResourceID AND
+A.ResourceID = C.ResourceID AND
+A.ResourceID = D.ResourceID AND
+A.ResourceID = E.ResourceID AND
+A.ResourceID = F.ResourceID AND
+A.ResourceID = G.ResourceID AND
+A.ResourceID = H.ResourceID AND
+A.ResourceID = I.ResourceID
+
+GROUP BY A.Name0, A.Manufacturer0, A.Model0, C.Name0, D.TotalPhysicalMemory0, G.AD_Site_Name0, A.UserName0, H.Caption0, H.CSDVersion0, G.Creation_Date0, I.LastHWScan
+

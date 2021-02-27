@@ -1,0 +1,55 @@
+OPTION EXPLICIT
+Const ADS_PROPERTY_CLEAR = 1
+DIM strSearchFilter, strSearchRoot, objRootDSE
+DIM cn,cmd,rs, strSearchScope
+DIM objNewOU, strNewOU
+
+' ********************************************************
+' * Setup
+' ********************************************************
+
+' Specify the distinguished name of the new OU to move the computers to
+
+strNewOU = "ou=MEDVComputers,dc=eskonr,dc=COM"
+
+' Modify the filter to query for your department.  
+
+' This filter will find all computers where the name starts with "MEDV"
+
+strSearchFilter = "(&(objectCategory=Computer)(sAMAccountName=MEDV*))"
+strSearchRoot = getDomainRoot
+strSearchScope = "subtree"
+set objNewOU = GetObject("LDAP://" & strNewOU)
+Set cn = CreateObject("ADODB.Connection")
+Set cmd =   CreateObject("ADODB.Command")
+cn.open "Provider=ADsDSOObject;"
+
+Set cmd.ActiveConnection = cn
+
+cmd.CommandText = "<LDAP://" & strSearchRoot & ">;" & strSearchFilter & ";ADsPath;" & strSearchScope
+cmd.Properties("Page Size") = 1000
+
+Set rs = cmd.Execute
+
+' loop through the search results
+
+while rs.eof<> true and rs.bof<>true
+	objNewOU.MoveHere rs(0),vbNullString
+	rs.movenext
+wend
+
+rs.close
+cn.close
+
+wscript.echo "Completed"
+
+private function getDomainRoot
+	' Bind to RootDSE - this object is used to 
+	' get the default configuration naming context
+	' e.g. dc=wisesoft,dc=co,dc=uk
+
+	set objRootDSE = getobject("LDAP://RootDSE")
+	getDomainRoot = objRootDSE.Get("DefaultNamingContext")
+end function
+
+
