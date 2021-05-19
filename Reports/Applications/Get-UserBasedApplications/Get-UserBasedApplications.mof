@@ -1,0 +1,102 @@
+#pragma namespace ("\\\\.\\root\\cimv2")
+instance of __Namespace
+{
+    Name = "SMS" ;
+};
+#pragma namespace ("\\\\.\\root\\cimv2\\SMS")
+instance of __Namespace
+{
+    Name = "INV_TEMP" ;
+};
+#pragma namespace ("\\\\.\\root\\cimv2\\SMS\\INV_TEMP")
+
+//=============================================================================
+// SMS_Class_Template must be the parent of every class
+//=============================================================================
+class SMS_Class_Template
+{
+};
+
+// Class Qualifiers:
+//          SMS_Report:     OPTIONAL -- Boolean value (TRUE, FALSE)
+//                          indicating whether or not the class is
+//                          to be reported in SMS inventory. Default
+//                          is FALSE.
+//          SMS_Group_Name: OPTIONAL -- The name of the property
+//                          group to be used in the output MIF.
+//                          Default is the WBEM class name as it
+//                          appears in this MOF.
+//          SMS_Class_ID:   REQUIRED -- The SMS class identifier
+//                          string associated with the property group.
+//          SMS_Namespace:  OPTIONAL -- Boolean value (TRUE, FALSE)
+//                          indicating whether the provider for this class
+//                          is located in the SMS namespace. This is TRUE
+//                          for any class supplied by the SMS CimV2 Provider.
+//          Namespace:      OPTIONAL -- The namespace where this class
+//                          is located. Default is the root\cimv2 namespace.
+//                          Every '\' should be entered as '\\\\'.
+//                          As an example:
+//                              root\default
+//                          should be entered as:
+//                              Namespace ("root\\\\default")
+//
+// Property Qualifiers:
+//          SMS_Report:     OPTIONAL -- Boolean value (TRUE, FALSE)
+//                          indicating whether or not the property
+//                          is to be included in SMS inventory.
+//                          Default is FALSE. For key properties,
+//                          this qualifier is ignored; keys will
+//                          always be reported.
+//          SMS_Units:      OPTIONAL -- This string informs the
+//                          Inventory Agent to perform a conversion
+//                          between data provided by WMI into a form
+//                          SMS can handle. Example: SMS can't handle
+//                          64-bit integers, so in the case of disk
+//                          size, we use the qualifier:
+//                          SMS_Units("Megabytes") and the agent will
+//                          translate the raw # of bytes returned by
+//                          WBEM into the appropriate representation
+//                          in megabytes.
+//
+//                          Another example is using the DateString
+//                          qualifier for WMI date-time intervals
+//                          (aka: ddddddddHHMMSS.mmmmmm:000).  SMS
+//                          requires the DateString qualifier to
+//                          convert / use WMI time-intervals.
+//
+//                          Values:
+//                           Kilobytes, divides integer value by 1024
+//                           Megabytes, divides int value by (1024 * 1024)
+//                           GigaBytes, divides int value by (1024 * 1024 * 1024)
+//                           HexString, converts int value to hex characters,
+//                             (ie:  hex value 0A1 converted to string "0xA1")
+//                           DecimalString, converts int value to decimal string
+//                             (ie:  value 123 converted to string "123")
+//                           Seconds, divides int value by 1000
+//                           DateString, converts value to interval string
+//                             (ie: DateTime value "00000008061924.000000:000"
+//                              turns into string "8 Days 08:15:55 Hours")
+//          SMS_Width:      OPTIONAL -- Integer indicating whether the length 
+//                          of the string property is the default of 255
+//                          or longer as specified in the value.
+//
+[ SMS_Report (TRUE),
+  SMS_Group_Name ("User_Based_Applications"),
+  SMS_Class_ID ("MICROSOFT|USER_BASED_APPLICATIONS|1.0"),
+  Namespace ("root\\\\ITLOCAL") ]
+class User_Based_Applications : SMS_Class_Template
+{
+    [ SMS_Report (TRUE), key ]
+    String     ProdID;
+    [ SMS_Report (TRUE), key ]
+    String     UserName;
+    [ SMS_Report (TRUE) ]
+    String     DisplayName;
+    [ SMS_Report (TRUE) ]
+    String     DisplayVersion;
+    [ SMS_Report (TRUE) ]
+    String     InstallDate;
+    [ SMS_Report (TRUE) ]
+    String     Publisher;
+};
+
