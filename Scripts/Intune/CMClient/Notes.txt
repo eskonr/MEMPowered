@@ -1,0 +1,7 @@
+1.Copy the configmgr client files into client folder.
+2.Use the win32app and create a win32 app using the install file CMInstall.bat
+3.Create the application in intune with the following detection rule:
+installer:CMInstall.bat
+key path:Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SMS\Mobile Client
+value name:ProductVersion
+detection method:key exist
