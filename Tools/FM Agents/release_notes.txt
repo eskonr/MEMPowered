@@ -1,0 +1,79 @@
+Version 1.0.1.37 of the Azure MFA NPS Extension adds the following additional functionality:
+
+* Added support for OVERRIDE_VOICE_OTP registry entry to allow NPS Extension to use Voice
+  Approval instead of Voice OTP for installations that don't support access/challenge.
+
+Upgrade Considerations:
+* Uninstall any older version before installing this version or expect to restart the server.
+* Run the new NPS Extension installer and run the PowerShell script if needed.
+  Restart NPS if PowerShell script is not run.
+
+-------------------------------------------------------------------------------
+
+Version 1.0.1.35 of the Azure MFA NPS Extension adds the following additional functionality:
+
+* Upgraded installer to address accessibility issues
+* Fixed use of system proxy for Windows Server 2016 and above
+
+Upgrade Considerations:
+* Uninstall any older version before installing this version or expect to restart the server.
+* Run the new NPS Extension installer and run the PowerShell script if needed.
+  Restart NPS if PowerShell script is not run.
+
+-------------------------------------------------------------------------------
+
+Version 1.0.1.32 of the Azure MFA NPS Extension adds the following additional functionality:
+
+* Added support for rolling NPS Extension certificates
+* Improved logging details for errors acquiring an access token
+
+Upgrade Considerations:
+* Uninstall any older version before installing this version or expect to restart the server.
+* Run the new NPS Extension installer and run the PowerShell script if needed.
+  Restart NPS if PowerShell script is not run.
+
+-------------------------------------------------------------------------------
+
+Version 1.0.1.31 of the Azure MFA NPS Extension adds the following additional functionality:
+
+* Fixed issue with LDAP connection reinitialization
+* Fixed crash occuring due to missing username
+
+Upgrade Considerations:
+* Uninstall any older version before installing this version or expect to restart the server.
+* Run the new NPS Extension installer and run the PowerShell script if needed.
+  Restart NPS if PowerShell script is not run.
+
+-------------------------------------------------------------------------------
+
+Version 1.0.1.20 of the Azure MFA NPS Extension adds the following additional functionality:
+
+* Fixed issue with username character encoding
+* Fixed other minor issues
+
+Upgrade Considerations:
+* Uninstall any older version before installing this version or expect to restart the server.
+* Run the new NPS Extension installer and run the PowerShell script if needed.
+  Restart NPS if PowerShell script is not run.
+
+-------------------------------------------------------------------------------
+
+Version 1.0.1.16 of the Azure MFA NPS Extension adds the following additional functionality:
+
+* Improved logging of exceptions
+
+Upgrade Considerations:
+* Uninstall any older version before installing this version or expect to restart the server.
+* Run the new NPS Extension installer and run the PowerShell script if needed.
+  Restart NPS if PowerShell script is not run.
+
+-------------------------------------------------------------------------------
+
+Version 1.0.0.0 of the Azure MFA NPS Extension adds the following additional functionality:
+
+* GA release
+
+Upgrade Considerations:
+* Uninstall any older version before installing this version or expect to restart the server.
+* Run the new NPS Extension installer and run the PowerShell script if needed.
+  Restart NPS if PowerShell script is not run.
