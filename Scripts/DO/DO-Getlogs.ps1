@@ -1,0 +1,3 @@
+﻿Get-DeliveryOptimizationStatus > "C:\temp\$env:COMPUTERNAME-DeliveryOptimizationStatus-$(get-date -format dd-MM-yyyy-HHmmss).txt"
+Get-DeliveryOptimizationPerfSnap -verbose > "C:\temp\$env:COMPUTERNAME-DeliveryOptimizationPerfSnap-$(get-date -format dd-MM-yyyy-HHmmss).txt"
+DeliveryOptimizationLog | Set-Content "C:\temp\$env:COMPUTERNAME-DeliveryOptimizationLog-$(get-date -format dd-MM-yyyy-HHmmss).txt"
