@@ -1,0 +1,14 @@
+This command to remove specific extension (blocked) for Arc managed device:
+azcmagent config set extensions.blocklist "Microsoft.CPlat.Core/WindowsPatchExtension,Microsoft.SoftwareUpdateManagement/WindowsOsUpdateExtension" --remove
+
+This command to add specific extension to the block list:
+azcmagent config set extensions.blocklist "Microsoft.AzureData/WindowsAgent.SqlServer" --add
+
+This is to check what the configuration set on the Arc Managed devices:
+azcmagent config list
+
+list of extensions for allow or block
+https://learn.microsoft.com/en-us/azure/azure-arc/servers/manage-vm-extensions
+
+Block Azure update management extension Arc device
+azcmagent.exe" config set extensions.blocklist "Microsoft.CPlat.Core/WindowsPatchExtension,Microsoft.SoftwareUpdateManagement/WindowsOsUpdateExtension"
