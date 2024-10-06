@@ -3,7 +3,8 @@
 This script checks if the computer is hybrid Azure AD joined before proceeding with application installation in Intune.
 
 .DESCRIPTION
-The script uses `dsregcmd /status` to determine if the device is both Azure AD joined and Domain joined. If both conditions are met, the script outputs `1` to indicate that the requirement is satisfied.
+The script uses `dsregcmd /status` to determine if the device is both Azure AD joined and Domain joined. If both conditions are met, the script outputs `Yes` to indicate that the requirement is satisfied.
+Author: Eswar Koneti (@eskonr)
 
 #>
 
@@ -11,27 +12,26 @@ The script uses `dsregcmd /status` to determine if the device is both Azure AD j
 $ErrorActionPreference = "SilentlyContinue"
 
 # Initialize requirement flag
-$b_Required = $False
+$isHybrid= $False
 
-function Get-DsRegStatus {
-    $dsregcmd = dsregcmd /status
-    $status = $dsregcmd | Select-String -Pattern " *[A-z]+ : .+ *"
-    $result = @{}
-    foreach ($line in $status) {
-        $parts = ($line.ToString().Trim() -split " : ")
-        $result[$parts[0]] = $parts[1]
-    }
-    return $result
+# Execute dsregcmd and capture output
+$dsregcmd = dsregcmd /status
+$status = $dsregcmd | Select-String -Pattern " *[A-z]+ : .+ *"
+
+# Parse the output into a hashtable
+$result = @{}
+foreach ($line in $status) {
+    $parts = ($line.ToString().Trim() -split " : ")
+    $result[$parts[0]] = $parts[1]
 }
 
 # Check if device is Azure AD joined and Domain joined
-$status = Get-DsRegStatus
-if ($status["AzureADJoined"] -eq "YES" -and $status["DomainJoined"] -eq "YES") {
-    $b_Required = $True
+if ($result["AzureADJoined"] -eq "YES" -and $result["DomainJoined"] -eq "YES") {
+    $isHybrid = $True
 }
 
 # Output the result
-if ($b_Required) { Write-Output 1 }
+if ($isHybrid) { Write-Output "Yes" }
 
 # Clear errors and exit
 $Error.Clear()
