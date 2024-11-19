@@ -1,0 +1,22 @@
+    // Define variables
+let deviceEmailList = dynamic([
+    "Test1@eskonr.com",
+    "Test2@eskonr.com",
+    "Test3@eskonr.com"
+]);
+let startDate = ago(30d);
+let endDate = now();
+//start the main query
+IntuneDevices
+    | summarize arg_max(TimeGenerated, *) by SerialNumber, DeviceName
+    | where OS == "Windows" and not(DeviceName has_any("#")) and isnotempty(DeviceName) and ManagedBy != "MDE" and CompliantState != "ConfigManager"
+    | extend OS = iff(OSVersion startswith "10.0.2", "Windows 11", "Windows 10")
+    | extend Chassis = iff(Model startswith "Virtual", "Virtual", "Physical")
+    | extend DeviceUrl = strcat('https://endpoint.microsoft.com/#blade/Microsoft_Intune_Devices/DeviceSettingsBlade/overview/mdmDeviceId/', DeviceId)
+    | extend LastCheckin = format_datetime(todatetime(LastContact), 'dd/M/yyyy HH:mm')
+    | extend EnrollmentDate = format_datetime(todatetime(CreatedDate), 'dd/M/yyyy HH:mm')
+    | extend Active = iff(todatetime(LastContact) between (startDate .. endDate), "Active", "Inactive")
+    | where Chassis =="Physical" and Active =="Active"
+    and UserEmail in (deviceEmailList)
+| distinct DeviceName,PrimaryUser = UserEmail,UPN, OS, Model, SerialNumber, EnrollmentDate, LastCheckin,DeviceUrl
+
