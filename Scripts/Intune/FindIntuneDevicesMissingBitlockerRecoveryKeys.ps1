@@ -33,7 +33,7 @@ $date = (Get-Date -Format "ddMMyyyy-HHmmss")
 $OutputCsv =Join-Path -Path $directory -ChildPath "IntuneDevicesMissingBitlockerkeys_$date.csv"
 
 # Define the module names
-$modulesToCheck = @('Microsoft.Graph.DeviceManagement')
+$modulesToCheck = @('Microsoft.Graph.DeviceManagement','Microsoft.Graph.Identity.SignIns')
 foreach ($moduleName in $modulesToCheck) {
     # Check if the module is installed
     if (-not (Get-Module -ListAvailable -Name $moduleName)) {
