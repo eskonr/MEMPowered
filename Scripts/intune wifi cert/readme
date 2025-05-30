@@ -21,3 +21,4 @@ cmd.exe /c "c:\windows\system32\deviceenroller.exe /c /AutoEnrollMDM"
 6.if intune managed, run the following command enrolling the device to intune (psexec and use system account) or enable the local gpo with user credentials for mdm enrollment.
 DeviceEnroller.exe /c /AutoEnrollMDM
 7.check device enterprise event viewer logs for enrollment if success or not.
+more details https://learn.microsoft.com/en-us/windows/client-management/enroll-a-windows-10-device-automatically-using-group-policy#configure-the-autoenrollment-group-policy-for-a-single-pc
