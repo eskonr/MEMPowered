@@ -1,0 +1,23 @@
+Investigation/troubleshooting the intune enrolled device after motherboard replaced failed to connect to corporate wifi using PKI/sectigo certs:
+
+1.upload new hashid of the autopilot to intune
+2.Delete the intune cert from certlm.msc, intune mdm and computer certs
+3.check the MMPC Value if not 0, change to 0 in registry hklm/microsoft
+4.delete the registry key for the enrollment using the following script
+$EnrollmentsPath = "HKLM:\SOFTWARE\Microsoft\Enrollments\"
+$Enrollments = Get-ChildItem -Path $EnrollmentsPath
+foreach ($Enrollment in $Enrollments)
+{
+$EnrollmentObject = Get-ItemProperty Registry::$Enrollment
+if ($EnrollmentObject."DiscoveryServiceFullURL" -eq "https://enrollment.manage.microsoft.com/enrollmentserver/discovery.svc")
+{
+$EnrollmentPath = $EnrollmentsPath + $EnrollmentObject."PSChildName"
+Remove-Item -Path $EnrollmentPath -Recurse
+}
+}
+4.Re-enroll the device to intune using
+cmd.exe /c "c:\windows\system32\deviceenroller.exe /c /AutoEnrollMDM"
+5.If SCCM or co-managed, rerun the enrollment from the configmgr remediation action, monitor the log.
+6.if intune managed, run the following command enrolling the device to intune (psexec and use system account) or enable the local gpo with user credentials for mdm enrollment.
+DeviceEnroller.exe /c /AutoEnrollMDM
+7.check device enterprise event viewer logs for enrollment if success or not.
