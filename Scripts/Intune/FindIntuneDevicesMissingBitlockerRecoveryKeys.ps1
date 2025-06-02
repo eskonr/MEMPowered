@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
     This script identifies Intune-managed Windows devices missing BitLocker keys.
 
@@ -54,25 +54,17 @@ foreach ($moduleName in $modulesToCheck) {
         exit
     }
 }
+$GraphConnected=$false
+try
+{
+Connect-MgGraph -Scopes "DeviceManagementManagedDevices.Read.All","BitLockerKey.Read.All" -NoWelcome -ErrorAction Stop
+$GraphConnected=$true
 
-$GraphConnected = $false
-
-try {
-    $tenant = Get-MgContext -ErrorAction Stop
-    $GraphConnected = $true
-} catch {
-    Write-host "Unable to retrieve Microsoft Graph details." -ForegroundColor red
-}
-
-if (!$GraphConnected) {
-    try {
-        Connect-MgGraph -Scopes "DeviceManagementManagedDevices.Read.All","BitLockerKey.Read.All" -NoWelcome -ErrorAction Stop
-        $GraphConnected = $true
     } catch {
        write-host "Unable to connect to Microsoft Graph. Please investigate." -ForegroundColor Red
        Exit
     }
-}
+
 if ($GraphConnected) 
 {
 
