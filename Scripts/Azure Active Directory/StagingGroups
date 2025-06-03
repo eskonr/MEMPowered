@@ -1,0 +1,65 @@
+Create dynamic groups for % of device to be used for staged deployments.  Because this staging is based on the last digit of the device object ID in Entra ID, and that is a hex value, it can 1 of 16 alternatives.
+
+Thus to have automated increasing group size content for deployments, these groups can now be used:
+
+Group name
+% of total
+Group membership
+Contains
+Intune - Dynamically Added Computers - All HK SG IN Physical Computers Phased Deploy 1
+6.25
+3187
+Physical devices whose objectid ends with 'a'
+Intune - Dynamically Added Computers - All HK SG IN Physical Computers Phased Deploy 2
+25
+12967
+Physical devices whose objectid ends with 'abcd'
+
+(i.e. Also includes members from Deploy 1)
+Intune - Dynamically Added Computers - All HK SG IN Physical Computers Phased Deploy 3
+50
+18229
+Physical devices whose objectid ends with 'abcdef01'
+
+(i.e. Also includes members from Deploy 1 and Deploy 2)
+Intune - Dynamically Added Computers - All HK SG IN Physical Computers Phased Deploy 4
+75
+36556
+Physical devices whose objectid ends with 'abcdef012345'
+
+(i.e. Also includes members from Deploy 1, Deploy 2 and Deploy 3)
+Intune - Dynamically Added Computers - All All India Virtual Computers Phased Deploy 1
+6.25
+1138
+Virtual devices whose objectid ends with 'a'
+Intune - Dynamically Added Computers - All All India Virtual Computers Phased Deploy 2
+25
+4553
+Virtual devices whose objectid ends with 'abcd'
+
+(i.e. Also includes members from Deploy 1)
+Intune - Dynamically Added Computers - All All India Virtual Computers Phased Deploy 3
+50
+9267
+Virtual devices whose objectid ends with 'abcdef01'
+
+(i.e. Also includes members from Deploy 1 and Deploy 2)
+Intune - Dynamically Added Computers - All All India Virtual Computers Phased Deploy 4
+75
+13934
+Virtual devices whose objectid ends with 'abcdef012345'
+
+(i.e. Also includes members from Deploy 1, Deploy 2 and Deploy 3)
+
+After the 'deploy 4' groups are used, the final step for deployment would be to remove all of these groups and add the production groups instead:
+
+Physicals:
+Intune - Windows Computers - Physical - All HK SG IN Group 1
+Intune - Windows Computers - Physical - All HK SG IN Group 2
+
+Virtuals:
+Intune - Windows Computers - Virtual - All HK SG IN
+
+Since we can't dynamically go < 1/16 of a group's content, manual groups are needed if you want to do a '1000' member pilot.  If this is the case then vendor should pick this count from groups 'Intune - Dynamically Added Computers - All HK SG IN Physical Computers Phased Deploy 1' and 'Intune - Dynamically Added Computers - All HK SG IN Virtual Computers Phased Deploy 1' above.
+
+Also, if you need more deployment phases, we can of course create additional groups with member counts in between the above thresholds that was created above.
