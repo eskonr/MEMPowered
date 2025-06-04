@@ -1,0 +1,5 @@
+Download the file Auth.zip from  https://aka.ms/authscripts
+Unzip the files to a folder such as c:\temp .
+From an elevated PowerShell session (admin), change into the folder where scripts are saved and run .\start-auth.ps1 -vAuth -accepteula
+switch user and try to signin the impacted user account with WHFB PIN to reproduce the issue.
+when issue reproduced, take a screenshot of the error. then switch back to orignal admin account, From the elevated PowerShell session, run .\stop-auth.ps1
