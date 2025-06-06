@@ -1,0 +1,933 @@
+{
+    "[bicep]": {
+      "editor.defaultFormatter": "ms-azuretools.vscode-bicep",
+      "editor.suggest.showWords": false,
+      "editor.suggest.snippetsPreventQuickSuggestions": false,
+      "editor.suggestSelection": "first",
+      "editor.wordBasedSuggestions": "off",
+      "files.insertFinalNewline": true
+    },
+    "[csharp]": {
+      "editor.defaultFormatter": "ms-dotnettools.csharp",
+      "editor.formatOnSave": true,
+      "editor.formatOnSaveMode": "modificationsIfAvailable",
+      "editor.formatOnType": true,
+      "editor.wordBasedSuggestions": "off"
+    },
+    "[fsharp]": {
+      "editor.defaultFormatter": "Ionide.Ionide-fsharp"
+    },
+    "[Log]": {
+      "editor.fontSize": 12
+    },
+    "[markdown]": {
+      "editor.quickSuggestions": {
+        "comments": "off",
+        "other": "off",
+        "strings": "off"
+      },
+      "editor.wordWrap": "wordWrapColumn",
+      "editor.wordWrapColumn": 120
+    },
+    "[powershell]": {
+      "editor.defaultFormatter": "ms-vscode.powershell",
+      "editor.language.brackets": [
+        ["{", "}"],
+        ["(", ")"],
+        ["#region", "#endregion"]
+      ],
+      "editor.semanticHighlighting.enabled": false,
+      "editor.wordBasedSuggestions": "off",
+      "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+      "editor.wordBasedSuggestions": "off"
+    },
+      "[yaml]": {
+          "editor.defaultFormatter": "redhat.vscode-yaml"
+      },
+    "azure.cloud": "AzureCloud",
+    "azureFunctions.projectLanguage": "PowerShell",
+    "azureFunctions.projectRuntime": "~4",
+    "azureFunctions.showProjectWarning": false,
+    "azureFunctions.templateFilter": "All",
+    "codesnap.shutterAction": "copy",
+    "codetour.recordMode": "pattern",
+    "csharp.inlayHints.parameters.enabled": true,
+    "csharp.inlayHints.parameters.forIndexerParameters": true,
+    "csharp.inlayHints.parameters.forLiteralParameters": true,
+    "csharp.inlayHints.parameters.forObjectCreationParameters": true,
+    "csharp.inlayHints.parameters.forOtherParameters": true,
+    "csharp.inlayHints.types.enabled": true,
+    "csharp.inlayHints.types.forImplicitObjectCreation": true,
+    "csharp.inlayHints.types.forImplicitVariableTypes": true,
+    "csharp.inlayHints.types.forLambdaParameterTypes": true,
+    "csharp.semanticHighlighting.enabled": true,
+    "debug.console.fontFamily": "Delugia Nerd Font, CaskaydiaCove NF, Consolas NF, Inconsolata NF, Consolas, Courier New, monospace",
+    "debug.console.fontSize": 10,
+    "debug.inlineValues": "auto",
+    "debug.javascript.autoAttachFilter": "smart",
+    "debug.javascript.autoAttachSmartPattern": [
+      "${workspaceFolder}/**",
+      "!**/node_modules/**",
+      "**/$KNOWN_TOOLS$/**",
+      "**/app/out/vs/**",
+      "C:/users/jgrote/AppData/Local/Programs/Microsoft VS Code Insiders/**/app/out/vs/**"
+    ],
+    "debug.javascript.suggestPrettyPrinting": false,
+    "debug.javascript.usePreview": true,
+    "debug.onTaskErrors": "debugAnyway",
+    "debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
+    "deno.codeLens.implementations": true,
+    "deno.codeLens.references": true,
+    "deno.codeLens.referencesAllFunctions": true,
+    "deno.codeLens.test": true,
+    "deno.inlayHints.enumMemberValues.enabled": true,
+    "deno.inlayHints.functionLikeReturnTypes.enabled": true,
+    "deno.inlayHints.parameterTypes.enabled": true,
+    "deno.inlayHints.propertyDeclarationTypes.enabled": true,
+    "deno.inlayHints.variableTypes.enabled": true,
+    "deno.suggest.completeFunctionCalls": true,
+    "deno.suggest.imports.hosts": {
+      "https://crux.land": true,
+      "https://deno.land": true,
+      "https://x.nest.land": true
+    },
+    "dev.containers.dockerComposePath": "podman-compose",
+    "dev.containers.dockerPath": "podman",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.wordWrap": "off",
+    "docker.composeCommand": "podman-compose",
+    "docker.dockerPath": "podman",
+    "editor.accessibilitySupport": "off",
+    "editor.autoClosingQuotes": "languageDefined",
+    "editor.autoIndent": "full",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.columnSelection": false,
+    "editor.cursorBlinking": "phase",
+    // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.detectIndentation": true,
+    "editor.foldingImportsByDefault": true,
+    "editor.fontFamily": "CaskaydiaCove NF, CaskaydiaCove Nerd Font, JetBrainsMono Nerd Font, FiraCode Nerd Font, Cascadia Code PL, Consolas, monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.fontWeight": "300",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.guides.highlightActiveBracketPair": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.guides.bracketPairsHorizontal": true,
+    "editor.guides.highlightActiveIndentation": true,
+    "editor.guides.indentation": true,
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "editor.inlayHints.fontSize": 12,
+    "editor.inlineSuggest.enabled": true,
+    "editor.lineHeight": 1.2,
+    "editor.insertSpaces": false,
+    "editor.minimap.enabled": false,
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "other": "on",
+      "strings": "on"
+    },
+    "editor.renderControlCharacters": false,
+    "editor.renderLineHighlight": "none",
+    "editor.renderWhitespace": "none",
+    "editor.rulers": [200],
+    "editor.semanticHighlighting.enabled": true,
+    "editor.semanticTokenColorCustomizations": {
+      "[Default Dark+]": {
+        "enabled": true,
+        "rules": {
+          "punctuation.section.bracket.end.powershell": "#569CD6"
+        }
+      }
+    },
+    "editor.showFoldingControls": "always",
+    "editor.snippetSuggestions": "bottom",
+    "editor.stickyTabStops": true,
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.preview": true,
+    "editor.suggest.showStatusBar": true,
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.tabSize": 2,
+    "editor.tokenColorCustomizations": {
+      "[Default Dark+ Experimental]": {
+        "textMateRules": [
+          {
+            "scope": ["meta.attribute.powershell"],
+            "settings": {
+              "foreground": "#9CDCFE"
+            }
+          },
+          {
+            "scope": ["variable.other.member"],
+            "settings": {
+              "foreground": "#DCDCAA"
+            }
+          },
+          {
+            "scope": [
+              "support.function.attribute.powershell",
+              "storage.type.powershell",
+              "variable.parameter.powershell"
+            ],
+            "settings": {
+              "foreground": "#4ec9b0ff"
+            }
+          },
+          {
+            "scope": ["meta.hashtable.assignment.powershell"],
+            "settings": {
+              "foreground": "#D4D4D4"
+            }
+          },
+          {
+            "scope": [
+              "support.constant.variable.powershell",
+              "support.constant.automatic.powershell",
+              "keyword.control.using.powershell"
+            ],
+            "settings": {
+              "foreground": "#569cd6"
+            }
+          },
+          {
+            "scope": [
+              "punctuation.section.bracket.begin.powershell",
+              "punctuation.section.bracket.end.powershell"
+            ],
+            "settings": {
+              "foreground": "#569CD6"
+            }
+          }
+        ]
+      }
+    },
+    "editor.useTabStops": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 200,
+    "errorLens.enabled": true,
+    "errorLens.enabledDiagnosticLevels": ["warning", "info", "error"],
+    "errorLens.gutterIconSet": "borderless",
+    "evenBetterToml.schema.associations": {
+      "\\.omptheme\\.toml$": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+      "^(.*(/|\\\\)\\.?taplo\\.toml|\\.?taplo\\.toml)$": "taplo://taplo.toml"
+    },
+    "evenBetterToml.schema.links": true,
+    "explorer.copyRelativePathSeparator": "/",
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+      "*.jsx": "${capture}.js",
+      "*.ps1": "${capture}.tests.ps1",
+      "*.psm1": "${capture}.tests.ps1, ${capture}.psd1",
+      "*.ts": "${basename}.spec.${extname}, ${capture}.js, ${basename}.test.${extname}",
+      "*.tsx": "${capture}.ts",
+      "package.json": "package-lock.json, .npmrc, yarn.lock, .yarnrc, pnpm-lock.yaml",
+      "tsconfig.json": "tsconfig.*.json"
+    },
+    "extensions.ignoreRecommendations": true,
+    "files.associations": {
+      ".denoflare": "jsonc",
+      "*.json": "jsonc"
+    },
+    "files.defaultLanguage": "powershell",
+    "files.hotExit": "onExitAndWindowClose",
+    "files.trimTrailingWhitespace": true,
+    "FSharp.addFsiWatcher": true,
+    "FSharp.enableMSBuildProjectGraph": true,
+    "FSharp.externalAutocomplete": true,
+    "FSharp.indentationSize": 2,
+    "FSharp.infoPanelShowOnStartup": true,
+    "FSharp.lineLens.prefix": " $>  ",
+    "FSharp.pipelineHints.prefix": " |-- ",
+    "FSharp.showExplorerOnStartup": false,
+    "FSharp.showProjectExplorerIn": "explorer",
+    "FSharp.smartIndent": true,
+    "FSharp.useSdkScripts": true,
+    "git-graph.repository.commits.fetchAvatars": true,
+    "git-graph.repository.fetchAndPrune": true,
+    "git.autofetch": true,
+    "git.autoStash": true,
+    "git.branchPrefix": "feature/",
+    "git.branchRandomName.enable": true,
+    "git.confirmEmptyCommits": false,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.ignoreMissingGitWarning": true,
+    "git.inputValidationSubjectLength": 72,
+    "git.openAfterClone": "whenNoFolderOpen",
+    "git.postCommitCommand": "push",
+    "git.promptToSaveFilesBeforeCommit": "staged",
+    "git.pruneOnFetch": true,
+    "git.rebaseWhenSync": true,
+    "git.useCommitInputAsStashMessage": true,
+    "github-actions.org-features": true,
+    "github-actions.workflows.pinned.refresh.enabled": true,
+    "github-actions.workflows.pinned.refresh.interval": 2,
+    "github.copilot.enable": {
+      "*": true,
+      "yaml": true,
+      "plaintext": false,
+      "markdown": false,
+      "scminput": false,
+      "hcl": false
+    },
+    "githubIssues.queries": [
+      {
+        "label": "My Issues",
+        "query": "default"
+      },
+      {
+        "label": "My Created Issues",
+        "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc"
+      },
+      {
+        "label": "All Open",
+        "query": "state:open repo:${owner}/${repository} sort:created-desc"
+      }
+    ],
+    "githubPullRequests.createOnPublishBranch": "never",
+    "githubPullRequests.defaultMergeMethod": "squash",
+    "githubPullRequests.pushBranch": "always",
+    "githubPullRequests.assignCreated": "${user}",
+    "githubPullRequests.defaultDeletionMethod.selectLocalBranch": true,
+    "githubPullRequests.defaultDeletionMethod.selectRemote": true,
+    "githubPullRequests.notifications": "pullRequests",
+    "githubPullRequests.terminalLinksHandler": "vscode",
+    "gitlens.codeLens.enabled": false,
+    "gitlens.menus": {
+      "editor": false,
+      "editorGroup": false,
+      "editorTab": false,
+      "explorer": {
+        "clipboard": true,
+        "compare": true,
+        "history": true,
+        "remote": true
+      },
+      "scm": {
+        "authors": true
+      },
+      "scmGroup": {
+        "compare": true,
+        "openClose": true,
+        "stash": true
+      },
+      "scmGroupInline": {
+        "stash": true
+      },
+      "scmItem": {
+        "clipboard": true,
+        "compare": true,
+        "history": true,
+        "remote": false,
+        "stash": true
+      }
+    },
+    "gitmoji.additionalEmojis": [
+      {
+        "description": "Add a new feature                                       [minor]",
+        "code": "feat: ",
+        "emoji": "✨"
+      },
+      {
+        "description": "Fix a bug                                                      [patch]",
+        "code": "fix: ",
+        "emoji": "🐛"
+      },
+      {
+        "description": "Fix or patch a non-critical issue                   [patch]",
+        "code": "patch: ",
+        "emoji": "🩹"
+      },
+      {
+        "description": "Add or Update Tests",
+        "code": "test: ",
+        "emoji": "🧪"
+      },
+      {
+        "description": "Update documentation",
+        "code": "docs: ",
+        "emoji": "📝"
+      },
+      {
+        "description": " Update comments or TODO",
+        "code": "comments: ",
+        "emoji": "💡"
+      },
+      {
+        "description": " Fix compiler / linter warnings",
+        "code": "lint: ",
+        "emoji": "🚨"
+      },
+      {
+        "description": "Improve performance                                  [patch]",
+        "code": "perf: ",
+        "emoji": "⚡"
+      },
+      {
+        "description": "Refactor code                                               [patch]",
+        "code": "refactor: ",
+        "emoji": "♻️"
+      },
+      {
+        "description": "Restyle or improve structure/format",
+        "code": "style: ",
+        "emoji": "🎨"
+      },
+      {
+        "description": "Fix typo                                                        [patch]",
+        "code": "typo: ",
+        "emoji": "✏️"
+      },
+      {
+        "description": "Revert Changes                                           [patch]",
+        "code": "revert: ",
+        "emoji": "⏪"
+      },
+      {
+        "description": " Resolve Security Issue                                 [patch]",
+        "code": "security: ",
+        "emoji": "🔒"
+      },
+      {
+        "description": "Update the build system",
+        "code": "build: ",
+        "emoji": "📦"
+      },
+      {
+        "description": " Update the continuous integration",
+        "code": "ci: ",
+        "emoji": "👷"
+      },
+      {
+        "description": "Release, Deploy, or Publish Project",
+        "code": "release: ",
+        "emoji": "🚀"
+      },
+      {
+        "description": "Change configuration file(s)                        [patch]",
+        "code": "config: ",
+        "emoji": "⚙️"
+      },
+      {
+        "description": "Update Dependency                                   [patch]",
+        "code": "chore(deps): ",
+        "emoji": "🔗"
+      },
+      {
+        "description": "Bump Dependency Version                         [patch]",
+        "code": "chore(depbump): ",
+        "emoji": "⬆️"
+      },
+      {
+        "description": "Pin Dependency to specific version            [patch]",
+        "code": "chore(dep-pin): ",
+        "emoji": "📌"
+      },
+      {
+        "description": "Add Dependency                                        [patch]",
+        "code": "chore(depadd): ",
+        "emoji": "➕"
+      },
+      {
+        "description": "Remove Dependency                                  [patch]",
+        "code": "chore(depremove): ",
+        "emoji": "➖"
+      },
+      {
+        "description": "Miscellaneous Chore",
+        "code": "chore: ",
+        "emoji": "🔧"
+      },
+      {
+        "description": "Deprecate or comment out old code         [patch]",
+        "code": "deprecate: ",
+        "emoji": "🗑️"
+      },
+      {
+        "description": " Remove or delete code/features                [patch]",
+        "code": "remove: ",
+        "emoji": "🔥"
+      },
+      {
+        "description": "Critical Hotfix                                              [patch]",
+        "code": "hotfix: ",
+        "emoji": "🚑"
+      },
+      {
+        "description": "BREAKING CHANGE                                    [MAJOR]",
+        "code": "BREAKING CHANGE: ",
+        "emoji": "💥"
+      }
+    ],
+    "gitmoji.onlyUseAdditionalEmojis": true,
+    "hediet.vscode-drawio.codeLinkActivated": true,
+    "hediet.vscode-drawio.customLibraries": [
+      {
+        "entryId": "Azure: Ourchitecture All",
+        "libName": "Azure: Ourchitecture All",
+        "url": "https://raw.githubusercontent.com/ourchitecture/azure-drawio-icons/master/Azure%20All.drawiolib"
+      },
+      {
+        "entryId": "Azure: Icon Set",
+        "libName": "Azure: Icon Set",
+        "url": "https://raw.githubusercontent.com/DaveRuijter/diagrams.net/master/1.%20Azure%20Icon%20Set"
+      },
+      {
+        "entryId": "Azure: Docs",
+        "libName": "Azure: Docs",
+        "url": "https://raw.githubusercontent.com/DaveRuijter/diagrams.net/master/2.%20Azure%20Docs"
+      },
+      {
+        "entryId": "Azure: Cloud Design Studio Set",
+        "libName": "Azure: Cloud Design Studio Set",
+        "url": "https://raw.githubusercontent.com/DaveRuijter/diagrams.net/master/3.%20Azure%20Cloud%20Design%20Studio%20Set"
+      },
+      {
+        "entryId": "Azure: Patterns A-C",
+        "libName": "Azure: Patterns A-C",
+        "url": "https://raw.githubusercontent.com/DaveRuijter/diagrams.net/master/4.%20Azure%20Patterns%20A-C"
+      },
+      {
+        "entryId": "Azure: Patterns D-L",
+        "libName": "Azure: Patterns D-L",
+        "url": "https://raw.githubusercontent.com/DaveRuijter/diagrams.net/master/5.%20Azure%20Patterns%20D-L"
+      },
+      {
+        "entryId": "Azure: Patterns M-S",
+        "libName": "Azure: Patterns M-S",
+        "url": "https://raw.githubusercontent.com/DaveRuijter/diagrams.net/master/6.%20Azure%20Patterns%20M-S"
+      },
+      {
+        "entryId": "Azure: Patterns T-Z",
+        "libName": "Azure: Patterns T-Z",
+        "url": "https://raw.githubusercontent.com/DaveRuijter/diagrams.net/master/7.%20Azure%20Patterns%20T-Z"
+      },
+      {
+        "entryId": "Azure: Misc",
+        "libName": "Azure: Misc",
+        "url": "https://raw.githubusercontent.com/DaveRuijter/diagrams.net/master/8.%20Azure%20%26%20Microsoft%20misc"
+      }
+    ],
+    "hediet.vscode-drawio.theme": "Kennedy",
+    "indentRainbow.colors": ["#569CD620", "#C586C020", "#4EC9B020", "#CE917820"],
+    "javascript.format.semicolons": "insert",
+    "javascript.inlayHints.enumMemberValues.enabled": true,
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "javascript.inlayHints.parameterNames.enabled": "all",
+    "javascript.inlayHints.parameterTypes.enabled": true,
+    "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "jest.debugCodeLens.showWhenTestStateIn": [],
+    "jest.enableCodeLens": true,
+    "jest.testExplorer": {
+      "enabled": true,
+      "showInlineError": true
+    },
+    "js/ts.implicitProjectConfig.target": "ESNext",
+    "launch": {
+      "compounds": [],
+      "configurations": [
+        {
+          "name": "PS: Interactive",
+          "presentation": {
+            "group": "Powershell"
+          },
+          "request": "launch",
+          "type": "PowerShell"
+        },
+        {
+          "cwd": "${file}",
+          "name": "PS: Run",
+          "presentation": {
+            "group": "Powershell"
+          },
+          "request": "launch",
+          "script": "${file}",
+          "type": "PowerShell"
+        },
+        {
+          "args": ["${command:SpecifyScriptArgs}"],
+          "cwd": "${file}",
+          "name": "PS: Run w/ Args",
+          "presentation": {
+            "group": "Powershell"
+          },
+          "request": "launch",
+          "script": "${file}",
+          "type": "PowerShell"
+        },
+        {
+          "name": "PS: Pester",
+          "presentation": {
+            "group": "Powershell"
+          },
+          "request": "launch",
+          "script": "Invoke-Pester -Output Detailed",
+          "type": "PowerShell"
+        },
+        {
+          "args": ["${command:SpecifyScriptArgs}"],
+          "name": "PS: Pester w/ args",
+          "presentation": {
+            "group": "Powershell"
+          },
+          "request": "launch",
+          "script": "Invoke-Pester",
+          "type": "PowerShell"
+        },
+        {
+          "name": "PS: Attach",
+          "presentation": {
+            "group": "Powershell"
+          },
+          "processId": "${command:PickPSHostProcess}",
+          "request": "attach",
+          "runspaceId": 1,
+          "type": "PowerShell"
+        }
+      ]
+    },
+    "liveshare.spaces.mutedSpaces": [],
+    "maptz.regionfolder": {
+      "[bicep]": {
+        "foldEnd": "//endregion",
+        "foldEndRegex": "//endregion",
+        "foldStart": "//region [NAME]",
+        "foldStartRegex": "//region[\\s]*(.*)"
+      }
+    },
+    "markdown.extension.orderedList.marker": "one",
+    "omnisharp.enableImportCompletion": true,
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.organizeImportsOnFormat": true,
+    "omnisharp.useModernNet": true,
+    "pasteImage.path": "${projectRoot}/images",
+    "peacock.affectActivityBar": false,
+    "peacock.affectSashHover": false,
+    "peacock.affectStatusBar": false,
+    "peacock.favoriteColors": [
+      {
+        "name": "Angular Red",
+        "value": "#b52e31"
+      },
+      {
+        "name": "Auth0 Orange",
+        "value": "#eb5424"
+      },
+      {
+        "name": "Azure Blue",
+        "value": "#007fff"
+      },
+      {
+        "name": "C# Purple",
+        "value": "#68217A"
+      },
+      {
+        "name": "Gatsby Purple",
+        "value": "#639"
+      },
+      {
+        "name": "Go Cyan",
+        "value": "#5dc9e2"
+      },
+      {
+        "name": "Java Blue-Gray",
+        "value": "#557c9b"
+      },
+      {
+        "name": "JavaScript Yellow",
+        "value": "#f9e64f"
+      },
+      {
+        "name": "Mandalorian Blue",
+        "value": "#1857a4"
+      },
+      {
+        "name": "Node Green",
+        "value": "#215732"
+      },
+      {
+        "name": "React Blue",
+        "value": "#00b3e6"
+      },
+      {
+        "name": "Something Different",
+        "value": "#832561"
+      },
+      {
+        "name": "Vue Green",
+        "value": "#42b883"
+      }
+    ],
+    "peacock.showColorInStatusBar": false,
+    "pesterExplorer.autoDiscoverOnOpen": true,
+    "pesterExplorer.testRootDirectory": ".",
+    "php.suggest.basic": false,
+    "powershell.buttons.showRunButtons": true,
+    "powershell.codeFormatting.alignPropertyValuePairs": true,
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    "powershell.codeFormatting.newLineAfterOpenBrace": true,
+    "powershell.codeFormatting.openBraceOnSameLine": true,
+    "powershell.codeFormatting.pipelineIndentationStyle": "IncreaseIndentationForFirstPipeline",
+    "powershell.codeFormatting.preset": "OTBS",
+    "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
+    "powershell.codeFormatting.useConstantStrings": true,
+    "powershell.codeFormatting.useCorrectCasing": true,
+    "powershell.codeFormatting.whitespaceBetweenParameters": true,
+    "powershell.integratedConsole.showOnStartup": true,
+    "powershell.integratedConsole.suppressStartupBanner": true,
+    "powershell.pester.codeLens": false,
+    "powershell.pester.debugOutputVerbosity": "Detailed",
+    "powershell.pester.useLegacyCodeLens": false,
+    "powershell.powerShellDefaultVersion": "Windows PowerShell (x64)",
+    "powershell.promptToUpdatePowerShell": false,
+    "powershell.sideBar.CommandExplorerVisibility": false,
+    "powershell.startAsLoginShell.linux": true,
+    "prettier.requireConfig": true,
+    "razor.format.enable": false,
+    "razor.trace": "Messages",
+    "redhat.telemetry.enabled": true,
+    "remote.extensionKind": {
+      "ms-azuretools.vscode-docker": "workspace"
+    },
+    "remote.SSH.connectTimeout": 30,
+    "remote.SSH.defaultExtensions": ["oderwat.indent-rainbow"],
+    "remote.SSH.enableDynamicForwarding": true,
+    "remote.SSH.localServerDownload": "auto",
+    "remote.SSH.remotePlatform": {
+      "tinycloud": "linux",
+      "tinycloud-code": "linux",
+      "tinycloudold": "linux"
+    },
+    "remote.SSH.showLoginTerminal": false,
+    "remote.SSH.suppressWindowsSshWarning": true,
+    "remoteHub.search.download.enabled": true,
+    "screencastMode.onlyKeyboardShortcuts": true,
+    "security.workspace.trust.banner": "never",
+    "security.workspace.trust.enabled": false,
+    "security.workspace.trust.startupPrompt": "never",
+    "security.workspace.trust.untrustedFiles": "open",
+    "settingsSync.ignoredExtensions": [],
+    "settingsSync.ignoredSettings": [
+      "extensions.autoCheckUpdates",
+      "powershell.powerShellDefaultVersion",
+      "terminal.integrated.shell.windows"
+    ],
+    "sortJSON.orderOverride": ["prefix", "description", "body"],
+    "terminal.explorerKind": "external",
+    "terminal.external.windowsExec": "wt",
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.commandsToSkipShell": [
+      "PowerShell.RestartSession",
+      "-workbench.action.terminal.findNext",
+      "-workbench.action.terminal.findPrevious"
+    ],
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.defaultProfile.linux": "pwsh",
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.enablePersistentSessions": false,
+    "terminal.integrated.fontFamily": "CaskaydiaCove Nerd Font, CaskaydiaCove NF",
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontWeight": "400",
+    "terminal.integrated.lineHeight": 0,
+    "terminal.integrated.persistentSessionReviveProcess": "never",
+    "terminal.integrated.profiles.windows": {
+      "PowerShell": {
+        "args": ["-NoLogo"],
+        "icon": "terminal-powershell",
+        "source": "PowerShell",
+        "overrideName": false
+      }
+    },
+    "terminal.integrated.scrollback": 9999,
+    "testExplorer.addToEditorContextMenu": true,
+    "testExplorer.codeLens": false,
+    "testExplorer.errorDecoration": false,
+    "testExplorer.errorDecorationHover": false,
+    "testExplorer.gutterDecoration": false,
+    "testExplorer.useNativeTesting": true,
+    "testing.automaticallyOpenPeekView": "never",
+    "testing.automaticallyOpenPeekViewDuringAutoRun": true,
+    "testing.autoRun.mode": "rerun",
+    "testing.defaultGutterClickAction": "debug",
+    "todo-tree.general.tags": [
+      "BUG",
+      "HACK",
+      "FIXME",
+      "TODO",
+      "XXX",
+      "DEBUG",
+      "[ ]",
+      "[x]"
+    ],
+    "todo-tree.highlights.enabled": true,
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "todo-tree.tree.showScanModeButton": false,
+    "typescript.format.semicolons": "insert",
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "typescript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "update.enableWindowsBackgroundUpdates": true,
+    "vitest.showFailMessages": true,
+    "vs-kubernetes": {
+      "vscode-kubernetes.helm-path.windows": "C:\\Users\\JGrote\\.vs-kubernetes\\tools\\helm\\windows-amd64\\helm.exe",
+      "vscode-kubernetes.minikube-path.windows": "C:\\Users\\JGrote\\.vs-kubernetes\\tools\\minikube\\windows-amd64\\minikube.exe"
+    },
+    "vscodeGitCommit.predefinedPrefix": "Semantic Commit Messages",
+    "vsicons.associations.files": [
+      {
+        "extensions": ["arm.json", "arm.jsonc"],
+        "format": "svg",
+        "icon": "azure"
+      },
+      {
+        "extensions": ["parameters.json", "parameters.jsonc"],
+        "format": "svg",
+        "icon": "config"
+      },
+      {
+        "extensions": ["tests.ps1"],
+        "format": "svg",
+        "icon": "test"
+      },
+      {
+        "extensions": ["clixml"],
+        "format": "svg",
+        "icon": "xml"
+      }
+    ],
+    "vsicons.associations.folders": [
+      {
+        "extensions": ["obj"],
+        "format": "svg",
+        "icon": "bloc"
+      },
+      {
+        "extends": "dist",
+        "extensions": ["BuildOutput", "Output"],
+        "format": "svg",
+        "icon": "dist"
+      },
+      {
+        "extends": "helper",
+        "extensions": ["BuildHelpers"],
+        "format": "svg",
+        "icon": "helper"
+      },
+      {
+        "extensions": ["Functions", "FunctionApp"],
+        "format": "svg",
+        "icon": "azure"
+      },
+      {
+        "extensions": ["Classes", "Types"],
+        "format": "svg",
+        "icon": "model"
+      }
+    ],
+    "vsicons.dontShowNewVersionMessage": true,
+    "window.autoDetectColorScheme": true,
+    "window.commandCenter": true,
+    "window.doubleClickIconToClose": true,
+    "window.menuBarVisibility": "visible",
+    "window.newWindowDimensions": "maximized",
+    "window.restoreWindows": "none",
+    "window.title": "${dirty}${remoteName}${separator}${rootName}${separator}${activeEditorShort}${separator}${appName}",
+    "window.titleSeparator": " | ",
+    "workbench.colorCustomizations": {
+      "editor.lineHighlightBackground": "#1073cf2d",
+      "editor.lineHighlightBorder": "#9fced11f",
+      "editorBracketHighlight.foreground1": "#569CD6",
+      "editorBracketHighlight.foreground2": "#C586C0",
+      "editorBracketHighlight.foreground3": "#4EC9B0",
+      "editorBracketHighlight.foreground4": "#CE9178",
+      "errorLens.errorBackground": "#e4545410",
+      "errorLens.errorForeground": "#ff646440",
+      "errorLens.errorMessageBackground": "#e4545405",
+      "errorLens.infoBackground": "#2472c810",
+      "errorLens.infoForeground": "#2472c8B0",
+      "errorLens.warningBackground": "#ff942f10",
+      "errorLens.warningForeground": "#fa973a70",
+      "errorLens.warningMessageBackground": "#fff00005",
+      "tab.lastPinnedBorder": "#2472c8",
+      "terminal.ansiBlack": "#000000",
+      "terminal.ansiBlue": "#2472c8",
+      "terminal.ansiBrightBlack": "#666666",
+      "terminal.ansiBrightBlue": "#569cd6",
+      "terminal.ansiBrightCyan": "#9cdcfe",
+      "terminal.ansiBrightGreen": "#b5cea8",
+      "terminal.ansiBrightMagenta": "#daadd6",
+      "terminal.ansiBrightRed": "#f14c4c",
+      "terminal.ansiBrightWhite": "#e5e5e5",
+      "terminal.ansiBrightYellow": "#DCDCAA",
+      "terminal.ansiCyan": "#11a8cd",
+      "terminal.ansiGreen": "#6a9955",
+      "terminal.ansiMagenta": "#C586C0",
+      "terminal.ansiRed": "#cd3131",
+      "terminal.ansiWhite": "#e5e5e5",
+      "terminal.ansiYellow": "#CE9178",
+      "terminal.background": "#1E1E1E",
+      "terminal.foreground": "#D4D4D4",
+      "testing.message.error.decorationForeground": "#ff646440",
+      "testing.message.error.lineBackground": "#e4545405"
+    },
+    "workbench.editor.decorations.badges": true,
+    "workbench.editor.historyBasedLanguageDetection": true,
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.limit.perEditorGroup": true,
+    "workbench.editor.limit.value": 3,
+    "workbench.editor.openPositioning": "first",
+    "workbench.editor.scrollToSwitchTabs": true,
+    "workbench.preferredLightColorTheme": "PowerShell ISE",
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "newUntitledFile",
+    "hediet.vscode-drawio.resizeImages": null,
+    "FSharp.enableAnalyzers": true,
+    "FSharp.enableAdaptiveLspServer": true,
+    "FSharp.infoPanelReplaceHover": true,
+    "markdown.occurrencesHighlight.enabled": true,
+    "markdown.preview.typographer": true,
+    "markdown.validate.enabled": true,
+    "markdown.validate.fileLinks.enabled": "error",
+    "markdown.validate.fragmentLinks.enabled": "error",
+    "markdown.validate.referenceLinks.enabled": "error",
+    "markdown.validate.unusedLinkDefinitions.enabled": "warning",
+    "workbench.colorTheme": "Default Dark+ Experimental",
+    "terminal.integrated.tabs.title": "${sequence}",
+    "terminal.integrated.tabs.description": "${sequence}${separator}${task}${separator}${workspaceFolder}",
+    "terminal.integrated.tabs.enableAnimation": true,
+    "FSharp.suggestGitignore": false,
+    "omnisharp.enableAsyncCompletion": true,
+    "csharpextensions.reFormatAfterChange": false,
+    "csharpextensions.includeNamespaces": false,
+    "csharpextensions.useFileScopedNamespace": true,
+    "debug.openDebug": "openOnDebugBreak",
+    "editor.tabCompletion": "off",
+    "powershell.integratedConsole.focusConsoleOnExecute": true,
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
+    "powershell.buttons.showPanelMovementButtons": false,
+    "powershell.codeFolding.showLastLine": true,
+    "debug.toolBarLocation": "docked",
+    "githubPullRequests.pullBranch": "never",
+    "xml.fileAssociations": [
+      {
+        "pattern": "**/*.csproj",
+        "systemId": "https://gist.githubusercontent.com/JustinGrote/e0b7c60667c8224aef7479ed9832bcd6/raw/MSBuild.xsd"
+      }
+    ],
+      "xml.validation.namespaces.enabled": "onNamespaceEncountered",
+      "workbench.preferredDarkColorTheme": "PowerShell ISE"
+  }
