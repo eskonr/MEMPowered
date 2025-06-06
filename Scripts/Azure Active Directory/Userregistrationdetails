@@ -1,0 +1,315 @@
+Issue Description:
+You are looking for a way to extract Windows Hello registration statistics and integrate them into Power BI using Log Analytics or an available API.
+
+
+Related Suggestions Summary:
+We have identified that Microsoft Graph API provides an effective solution. Specifically, the List userRegistrationDetails API (GET /reports/authenticationMethods/userRegistrationDetails) can return JSON-formatted data on user authentication methods.
+
+Required permissions: AuditLog.Read.All, UserAuthenticationMethod.Read.All
+Required roles: Reports Reader, Security Reader, Security Administrator, Global Reader
+
+To extract and process the data, we tested PowerShell scripts using both Microsoft Graph PowerShell SDK and REST API authentication methods. 
+The data can be flattened and exported in CSV format for further analysis in Power BI.
+
+Validation Result:
+We successfully retrieved Windows Hello registration details and exported them into a structured CSV file. The process includes:
+Connecting to Microsoft Graph with the necessary permissions.
+Retrieving user registration details in JSON format.
+Flattening and converting the data into CSV for Power BI integration.
+For client credential flow, ensure that the application permissions are consented to and properly configured. For interactive authentication, users must manually retrieve an authorization code to obtain an access token.
+More Information:
+METHOD 1: Using PowerShell command to get User registration detail
+
+# Install the Microsoft Graph module if not already installed
+
+# Install-Module Microsoft.Graph
+
+ 
+
+# Import the Microsoft Graph module
+
+# Import-Module Microsoft.Graph
+
+ 
+
+# Connect to Microsoft Graph with the necessary scopes
+
+Connect-MgGraph -Scopes "UserAuthenticationMethod.Read.All"
+
+ 
+
+# Retrieve user registration details and export to a CSV file
+
+Get-MgReportAuthenticationMethodUserRegistrationDetail
+
+# Flatten the nested objects and arrays
+
+$flattenedResults = $results | ForEach-Object {
+
+    $user = $_
+
+    [PSCustomObject]@{
+
+        id = $user.id
+
+        userPrincipalName = $user.userPrincipalName
+
+        userDisplayName = $user.userDisplayName
+
+        isAdmin = $user.isAdmin
+
+        isSsprRegistered = $user.isSsprRegistered
+
+        isSsprEnabled = $user.isSsprEnabled
+
+        isSsprCapable = $user.isSsprCapable
+
+        isMfaRegistered = $user.isMfaRegistered
+
+        isMfaCapable = $user.isMfaCapable
+
+        isPasswordlessCapable = $user.isPasswordlessCapable
+
+        lastUpdatedDateTime = $user.lastUpdatedDateTime
+
+        methodsRegistered = ($user.methodsRegistered -join ", ")
+
+        isSystemPreferredAuthenticationMethodEnabled = $user.isSystemPreferredAuthenticationMethodEnabled
+
+        systemPreferredAuthenticationMethods = ($user.systemPreferredAuthenticationMethods -join ", ")
+
+        userPreferredMethodForSecondaryAuthentication = $user.userPreferredMethodForSecondaryAuthentication
+
+        userType = $user.userType
+
+    }
+
+}
+
+ 
+
+# Export the flattened results to CSV
+
+$flattenedResults | Export-Csv -Path "~\Desktop\AllUsersRegistrationDetails.csv" -NoTypeInformation
+
+METHOD 2: Using Graph API  and client credential flow to get data
+# Connecting to Azure Parameters
+$tenantID = "<insert your tenant ID>"
+$applicationID = "<insert your application ID>"
+$clientKey = "<insert the value of your created secret>"
+ 
+# Authenticate to Microsoft Graph
+Write-Host "Authenticating to Microsoft Graph via REST method"
+ 
+$url = "https://login.microsoftonline.com/$tenantID/oauth2/token"
+$resource = "https://graph.microsoft.com/"
+$restbody = @{
+    grant_type    = 'client_credentials'
+    client_id     = $applicationID
+    client_secret = $clientKey
+    resource      = $resource
+}
+ 
+# Get the return Auth Token
+$token = Invoke-RestMethod -Method POST -Uri $url -Body $restbody
+ 
+# Set the baseurl to MS Graph-API
+$baseUrl = 'https://graph.microsoft.com/v1.0'
+ 
+# Pack the token into a header for future API calls
+$header = @{
+    'Authorization' = "$($Token.token_type) $($Token.access_token)"
+    'Content-type'  = "application/json"
+}
+ 
+# Build the URL for the API call
+$url = $baseUrl + '/reports/authenticationMethods/userRegistrationDetails'
+ 
+# Call the REST-API
+$userRegistrationDetails = Invoke-RestMethod -Method GET -Headers $header -Uri $url
+ 
+# Convert the result to a formatted JSON string
+$formattedJson = $userRegistrationDetails | ConvertTo-Json -Depth 10
+ 
+# Output the formatted JSON
+Write-Host $formattedJson
+ 
+$formattedJson | Out-File -FilePath "~\Desktop\user_registration_details.json" -Encoding utf8
+ 
+# Output the result
+Write-Host "The JSON data has been saved to user_registration_details.json"
+METHOD 3: Using Graph API and Auth code flow to get data
+First, make sure AuditLog.Read.All Delegated Type permission is consent.
+
+And the application redirect_url is configured and same with our script parameter.
+
+image
+Second, when running script you will get browser pop up and do interactive sign-in to get auth code.
+
+copy paste the url in PowerShell, then get access token.
+
+image
+# Connecting to Azure Parameters
+
+$tenantID = "<insert your tenant ID>"
+
+$clientID = "<insert your client ID>"
+
+$client_secret = "<insert the value of your created secret>"
+
+$redirectUri = "https://localhost:4000"
+
+$scope = "https://graph.microsoft.com/AuditLog.Read.All"
+
+ 
+
+ 
+
+# Authenticate to Microsoft Graph
+
+Write-Host "Authenticating to Microsoft Graph via OAuth 2.0 authorization code flow"
+
+ 
+
+# Open a browser window for the user to sign in and grant permissions
+
+Start-Process "https://login.microsoftonline.com/$tenantID/oauth2/v2.0/authorize?client_id=$clientID&response_type=code&redirect_uri=$redirectUri&response_mode=query&scope=$scope"
+
+ 
+
+# Prompt the user to enter the authorization code from the browser
+
+$url = Read-Host "Paste the url you were redirected to (localhost url)"
+
+$authCode = ($url -split "\?|&" | ?{$_ -like "code*"}) -replace "code=",""
+
+ 
+
+Write-Verbose "Exchanging code for access token" -Verbose
+
+# Exchange the authorization code for an access token
+
+$tokenUrl = "https://login.microsoftonline.com/$tenantID/oauth2/v2.0/token"
+
+$tokenBody = @{
+
+    client_id     = $clientID
+
+    client_secret = $client_secret
+
+    scope         = $scope
+
+    code          = $authCode
+
+    redirect_uri  = $redirectUri
+
+    grant_type    = "authorization_code"
+
+}
+
+$tokenResponse = Invoke-RestMethod -Method POST -Body $tokenBody -Uri $tokenUrl
+
+ 
+
+# Set the baseurl to MS Graph-API
+
+$baseUrl = 'https://graph.microsoft.com/v1.0'
+
+ 
+
+# Pack the token into a header for future API calls
+
+$header = @{
+
+    'Authorization' = "Bearer $($tokenResponse.access_token)"
+
+    'Content-type'  = "application/json"
+
+}
+
+ 
+
+# Build the URL for the API call
+
+$url = $baseUrl + '/reports/authenticationMethods/userRegistrationDetails'
+
+ 
+
+# Call the REST-API
+
+$userRegistrationDetails = Invoke-RestMethod -Method GET -Headers $header -Uri $url
+
+ 
+
+# Convert the result to a formatted JSON string
+
+$formattedJson = $userRegistrationDetails | ConvertTo-Json -Depth 10
+
+ 
+
+# Output the formatted JSON
+
+Write-Host $formattedJson
+
+ 
+
+# Flatten the JSON data
+
+$flattenedResults = $userRegistrationDetails.value | ForEach-Object {
+
+    [PSCustomObject]@{
+
+        id = $_.id
+
+        userPrincipalName = $_.userPrincipalName
+
+        userDisplayName = $_.userDisplayName
+
+        userType = $_.userType
+
+        isAdmin = $_.isAdmin
+
+        isSsprRegistered = $_.isSsprRegistered
+
+        isSsprEnabled = $_.isSsprEnabled
+
+        isSsprCapable = $_.isSsprCapable
+
+        isMfaRegistered = $_.isMfaRegistered
+
+        isMfaCapable = $_.isMfaCapable
+
+        isPasswordlessCapable = $_.isPasswordlessCapable
+
+        methodsRegistered = ($_.methodsRegistered -join ", ")
+
+        isSystemPreferredAuthenticationMethodEnabled = $_.isSystemPreferredAuthenticationMethodEnabled
+
+        systemPreferredAuthenticationMethods = ($_.systemPreferredAuthenticationMethods -join ", ")
+
+        userPreferredMethodForSecondaryAuthentication = $_.userPreferredMethodForSecondaryAuthentication
+
+        lastUpdatedDateTime = $_.lastUpdatedDateTime
+
+    }
+
+}
+
+ 
+
+# Convert the flattened data to CSV and save to a file
+
+$flattenedResults | Export-Csv -Path "~\Desktop\user_registration_details.csv" -NoTypeInformation -Encoding UTF8
+
+ 
+
+Write-Host "The JSON data has been converted to CSV and saved to user_registration_details.csv"
+
+ 
+I want to thank you for your cooperation and patience during the troubleshooting process. Your collaboration was crucial in resolving this issue effectively.
+
+I will proceed with closing this support request. If you encounter any further issues related to this matter or need assistance with another issue, you can always reopen this case or create a new one.
+
+Thank you for choosing Microsoft products and working with Azure Identity and Access Support.
+
+We look forward to assisting you with any future needs.
