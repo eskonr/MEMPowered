@@ -4,7 +4,7 @@
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="CM_SCD">
-      <DataSourceReference>/ConfigMgr_SCM/{5C6358F2-4BB6-4a1b-A16E-8D96795D8602}</DataSourceReference>
+      <DataSourceReference>/ConfigMgr_CB1/{5C6358F2-4BB6-4a1b-A16E-8D96795D8602}</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>e9fe91e0-bb76-4df7-9992-fb4ce2088fab</rd:DataSourceID>
     </DataSource>
@@ -18,8 +18,9 @@
             <Value>=Parameters!days.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>--declare @days nvarchar(255)='90';
-select ParentApp.displayname [Application Name],F.Name [Folder],
+        <CommandText>--declare @days nvarchar(255)='30';
+select ParentApp.displayname [Application Name],
+case when F.Name is NULL then 'Root' else F.Name end as [Folder],
 fmc.Name [CollName],
 case when  fmc.CollectionType='2' then 'Machine' else 'User' end as 'CollType',
 case when fmc.CollectionID not in (select CRQ.collectionid from v_CollectionRuleQuery CRQ) and collg.Flags in ('2','4','6') then 'Static' else 'Dynamic' end as 'Query',
@@ -46,14 +47,13 @@ From dbo.fn_ListApplicationCIs(1033) ParentApp
      Left Join fn_ListDeploymentTypeCIs(1033) ParentApp_DT ON ParentApp_DT.AppModelName = ParentApp.ModelName
      Left Join vSMS_AppRelation_Flat R on R.FromApplicationCIID = ParentApp.CI_ID
      Left Join fn_ListApplicationCIs_List(1033) ChildApp on ChildApp.CI_ID = R.ToApplicationCIID And ChildApp.IsLatest = 1
-	 inner Join vFolderMembers FM on FM.InstanceKey =ParentApp.ModelName
-	inner Join vSMS_Folders F on F.ContainerNodeID = FM.ContainerNodeID
+	 left Join vFolderMembers FM on FM.InstanceKey =ParentApp.ModelName
+	left Join vSMS_Folders F on F.ContainerNodeID = FM.ContainerNodeID
 	left join  fn_DeploymentSummary(1033) ds on ParentApp.CI_ID=ds.CI_ID
 	left join v_Collection fmc on fmc.CollectionID=ds.CollectionID
 	left join v_Collections_G collg on collg.SiteID=fmc.CollectionID
 	inner join v_CIAssignment c on c.CollectionID=ds.CollectionID
-where 
-datediff(dd,parentapp.DateCreated,GETDATE()) &lt; @days
+where datediff(dd,parentapp.DateCreated,GETDATE()) &lt; @days
 group by parentapp.DisplayName,parentapp.CreatedBy,parentapp.DateLastModified,parentapp.NumberOfDeploymentTypes,parentapp.NumberOfDeployments,
 parentapp.NumberOfDevicesWithApp,
 parentapp.NumberOfDevicesWithFailure,
@@ -63,8 +63,9 @@ parentapp.CI_ID,
 F.Name,fmc.Name,ParentApp.DateCreated,ParentApp.CI_ID,
 fmc.CollectionType,fmc.CollectionID,
 collg.Flags,
-fmc.MemberCount,c.OfferTypeID
-order by 2</CommandText>
+fmc.MemberCount
+,c.OfferTypeID
+order by 1</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
@@ -1929,6 +1930,6 @@ U7NZB1yHMjXfFZdYBw0rgBDiK6jt2lZZVdRBL3CGlLIphz3qod8KEKzS3QRcmqhEA5eXgc9nbV2hXwog
   </Variables>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportServerUrl>http://azwdbpsms05/ReportServer</rd:ReportServerUrl>
+  <rd:ReportServerUrl>http://sg-cm01/ReportServer</rd:ReportServerUrl>
   <rd:ReportID>25a9e585-f693-4ff1-a4b3-e92d834db48b</rd:ReportID>
 </Report>

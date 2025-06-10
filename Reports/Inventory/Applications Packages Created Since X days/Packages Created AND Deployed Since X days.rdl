@@ -4,7 +4,7 @@
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="CM_SCD">
-      <DataSourceReference>/ConfigMgr_SCM/{5C6358F2-4BB6-4a1b-A16E-8D96795D8602}</DataSourceReference>
+      <DataSourceReference>/ConfigMgr_CB1/{5C6358F2-4BB6-4a1b-A16E-8D96795D8602}</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>e9fe91e0-bb76-4df7-9992-fb4ce2088fab</rd:DataSourceID>
     </DataSource>
@@ -18,9 +18,10 @@
             <Value>=Parameters!days.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>--declare @days nvarchar(255)='1330'
+        <CommandText>--declare @days nvarchar(255)='30'
 SELECT 
-p.Name,F.Name [Pkg Folder],
+p.Name,
+case when F.Name is NULL then 'Root' else F.Name end as [Folder],
 p.SourceDate [Pkg Created],
 	  fmc.Name [CollName],
 case when  fmc.CollectionType='2' then 'Device' else 'User' end as 'CollType',
@@ -36,9 +37,9 @@ case when p.PackageID NOT IN (SELECT ReferencePackageID FROM v_TaskSequenceRefer
       FROM
       v_Package P
       INNER JOIN v_Advertisement A ON P.PackageID = A.PackageID
-      INNER JOIN v_ClientAdvertisementStatus CAS ON A.AdvertisementID = CAS.AdvertisementID
-	  inner Join vFolderMembers FM on FM.InstanceKey =p.PackageID and fm.ObjectType='2'
-	  inner Join vSMS_Folders F on F.ContainerNodeID = FM.ContainerNodeID
+      left JOIN v_ClientAdvertisementStatus CAS ON A.AdvertisementID = CAS.AdvertisementID
+	  left Join vFolderMembers FM on FM.InstanceKey =p.PackageID and fm.ObjectType='2'
+	  left Join vSMS_Folders F on F.ContainerNodeID = FM.ContainerNodeID
 	  left join v_Collection fmc on fmc.CollectionID=a.CollectionID
 	  left join v_Collections_G collg on collg.SiteID=fmc.CollectionID
 WHERE
@@ -57,8 +58,8 @@ WHERE
           <DataField>Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Pkg_Folder">
-          <DataField>Pkg Folder</DataField>
+        <Field Name="Folder">
+          <DataField>Folder</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Pkg_Created">
@@ -286,14 +287,14 @@ WHERE
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox37">
+                            <Textbox Name="Textbox1">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Pkg Folder</Value>
+                                      <Value>Folder</Value>
                                       <Style>
                                         <FontFamily>Segoe UI Light</FontFamily>
                                         <FontWeight>Normal</FontWeight>
@@ -305,7 +306,7 @@ WHERE
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox37</rd:DefaultName>
+                              <rd:DefaultName>Textbox1</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -962,14 +963,14 @@ WHERE
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Pkg_Folder">
+                            <Textbox Name="Folder">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!Pkg_Folder.Value</Value>
+                                      <Value>=Fields!Folder.Value</Value>
                                       <Style>
                                         <FontFamily>Segoe UI Light</FontFamily>
                                       </Style>
@@ -980,7 +981,7 @@ WHERE
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Pkg_Folder</rd:DefaultName>
+                              <rd:DefaultName>Folder</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -1985,6 +1986,6 @@ U7NZB1yHMjXfFZdYBw0rgBDiK6jt2lZZVdRBL3CGlLIphz3qod8KEKzS3QRcmqhEA5eXgc9nbV2hXwog
   </Variables>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportServerUrl>http://azwdbpsms05/ReportServer</rd:ReportServerUrl>
+  <rd:ReportServerUrl>http://sg-cm01/ReportServer</rd:ReportServerUrl>
   <rd:ReportID>25a9e585-f693-4ff1-a4b3-e92d834db48b</rd:ReportID>
 </Report>
