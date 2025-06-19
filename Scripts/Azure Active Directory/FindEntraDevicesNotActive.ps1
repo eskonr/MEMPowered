@@ -35,7 +35,7 @@ if (-not (Get-Module -ListAvailable -Name $moduleName)) {
 
 # Connect to Microsoft Graph
 Write-Host 'Connecting to Microsoft Graph...' -ForegroundColor Yellow
-Connect-MgGraph -Scopes 'Device.Read.All'
+Connect-MgGraph #-Scopes 'Device.Read.All'
 
 # Define the threshold date for ApproximateLastSignInDateTime (Entra ID)
 $thresholdDate = (Get-Date).AddMonths(-3)
@@ -57,7 +57,7 @@ $serverVersionPrefixes = @(
 # Create a regex pattern for server versions
 $serverVersionRegex = '^(' + ($serverVersionPrefixes -join '|') + ')'
 
-Write-Host "Server Version Regex: $serverVersionRegex" -ForegroundColor Yellow
+#Write-Host "Server Version Regex: $serverVersionRegex" -ForegroundColor Yellow
 
 # Fetch all devices
 $devices = Get-MgDevice -All
@@ -65,10 +65,10 @@ $devices = Get-MgDevice -All
 # Filter devices based on specified criteria
 $filteredDevices = $devices | Where-Object {
 	$_.OperatingSystem -eq 'Windows' -and #Include Windows devices only
-	$_OperatingSystemVersion -notmatch $serverVersionRegex -and #Exclude Known Server OS versions
+	#$_OperatingSystemVersion -notmatch $serverVersionRegex -and #Exclude Known Server OS versions
     ($_.OperatingSystemVersion -like '10.0.1*' -or $_.OperatingSystemVersion -like '10.0.2*') -and #Include Windows 10 or windows 11
 	$_.ApproximateLastSignInDateTime -lt $thresholdDate -and #Include last logon timestamp is within 90 days
-    ([string]::IsNullOrEmpty($_.EnrollmentProfileName)) -and #Autoprofile is not assgined
+	-not ($_.PhysicalIds -match '\[ZTDID\]:.*') # PhysicalIds does not contain [ZTDID] excluding any autopilot device irrespective of tag assigned or not
     ([string]::IsNullOrEmpty($_.OnPremisesSyncEnabled)) -and #Device is not synced fron AD
     ([string]::IsNullOrEmpty($_.ManagementType)) -and # Management type such as MDE or MDM or SCCM is blank
 		$_.TrustType -ne "ServerAd" #device is not hybrid, only BYOD/workplace join or Entra joined/registered.
