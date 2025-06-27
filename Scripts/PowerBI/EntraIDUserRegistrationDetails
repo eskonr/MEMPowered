@@ -1,0 +1,8 @@
+let
+    Source = Json.Document(Web.Contents("https://graph.microsoft.com/v1.0/reports/authenticationMethods/userRegistrationDetails", [Headers=[Authorization="Bearer "&Token()]])),
+    #"Converted to Table" = Table.FromRecords({Source}),
+    #"Expanded value" = Table.ExpandListColumn(#"Converted to Table", "value"),
+    #"Expanded value1" = Table.ExpandRecordColumn(#"Expanded value", "value", {"id", "userPrincipalName", "userDisplayName", "userType", "isAdmin", "isSsprRegistered", "isSsprEnabled", "isSsprCapable", "isMfaRegistered", "isMfaCapable", "isPasswordlessCapable", "methodsRegistered", "isSystemPreferredAuthenticationMethodEnabled", "systemPreferredAuthenticationMethods", "userPreferredMethodForSecondaryAuthentication", "lastUpdatedDateTime"}, {"value.id", "value.userPrincipalName", "value.userDisplayName", "value.userType", "value.isAdmin", "value.isSsprRegistered", "value.isSsprEnabled", "value.isSsprCapable", "value.isMfaRegistered", "value.isMfaCapable", "value.isPasswordlessCapable", "value.methodsRegistered", "value.isSystemPreferredAuthenticationMethodEnabled", "value.systemPreferredAuthenticationMethods", "value.userPreferredMethodForSecondaryAuthentication", "value.lastUpdatedDateTime"}),
+    #"Extracted Values" = Table.TransformColumns(#"Expanded value1", {"value.methodsRegistered", each Text.Combine(List.Transform(_, Text.From), ","), type text})
+in
+    #"Extracted Values"
