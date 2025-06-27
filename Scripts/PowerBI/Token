@@ -1,0 +1,23 @@
+() =>
+let
+    url = "https://login.microsoftonline.com/TenantID/oauth2/token",
+    grant_type= "client_credentials",
+    scope = "openid",
+    Client_ID = "ApplicationID",
+    Client_Secret = "SecretValue",
+    resource = "https://graph.microsoft.com/",
+ 
+   body = "scope="& scope &"&grant_type=" & grant_type &"&Client_Id=" & Client_ID & "&Client_Secret=" & Client_Secret & "&resource=" & resource,
+    Source  = Json.Document(Web.Contents(url, [ 
+        Headers = [
+            #"Content-Type"="application/x-www-form-urlencoded"
+        ],
+        Content=Text.ToBinary(body)
+    ])),
+#"Converted to Table" = Record.ToTable(Source),
+    #"Filtered Rows" = Table.SelectRows(#"Converted to Table", each ([Name] = "access_token")),
+    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"Value"}),
+    Value = #"Removed Other Columns"[Value],
+    Value1 = Lines.ToText(Value)
+in
+    Value1
