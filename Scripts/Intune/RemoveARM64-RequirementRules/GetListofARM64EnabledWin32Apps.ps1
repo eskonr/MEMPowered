@@ -23,8 +23,8 @@
 $scriptpath = $MyInvocation.MyCommand.Path
 $dir = Split-Path $scriptpath
 $logFile = "$dir\ListOfAMR64Win32Apps.log"
-if (-not (Test-Path $logPath)) {
-    New-Item -ItemType Directory -Path $logPath -Force | Out-Null
+if (-not (Test-Path $dir)) {
+    New-Item -ItemType Directory -Path $dir -Force | Out-Null
 }
 
 # Initialize summary counters
@@ -42,10 +42,10 @@ function Write-Log {
         [string]$Level = "INFO",
         [string]$Color = "White"
     )
-    
+
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $logMessage = "$timestamp > [$Level] $Message"
-    
+
     Add-Content -Path $logFile -Value $logMessage
     #Write-Host $Message -ForegroundColor $Color
 }
@@ -57,14 +57,14 @@ try {
     # Check if module is installed
     if (-not (Get-Module -ListAvailable -Name $moduleName -ErrorAction SilentlyContinue)) {
        write-host "Module $moduleName not found. Installing..." -ForegroundColor "Yellow"
-        
+
         # Install the module
         Install-Module -Name $moduleName -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop
         write-host "Successfully installed $moduleName module" -ForegroundColor "Green"
     }
-    
+
     # Import the module
-    Import-Module $moduleName -MinimumVersion $moduleRequiredVersion -ErrorAction Stop
+    Import-Module $moduleName -ErrorAction Stop
 } catch {
     write-host "Failed to install or import $moduleName module: $_" -ForegroundColor "Red"
     exit 1
@@ -103,24 +103,24 @@ try {
 foreach ($app in $win32Apps) {
     $appId = $app.Id
     $appName = $app.DisplayName
-    
+
     try {
         $fullApp = Get-MgBetaDeviceAppManagementMobileApp -MobileAppId $appId -ErrorAction Stop
-        
+
         if (-not $fullApp.AdditionalProperties) {
             $summary.ARM64NotFound++
             continue
         }
-        
+
         $params = @{
             "@odata.type" = "#microsoft.graph.win32LobApp"
             "displayName" = $fullApp.DisplayName
             "publisher" = $fullApp.Publisher
         }
-        
+
         $arm64Found = $false
         $statusMessage = "$appName (ID: $appId)"
-        
+
         # Check allowedArchitectures
         $currentAllowed = $fullApp.AdditionalProperties.allowedArchitectures
         if ($currentAllowed -like "*ARM64*") {
@@ -129,13 +129,13 @@ foreach ($app in $win32Apps) {
             $params["allowedArchitectures"] = $newAllowed -join ','
             $statusMessage += " - Found ARM64 in allowedArchitectures"
         }
-        
+
         # Check applicableArchitectures
         $currentApplicable = $fullApp.AdditionalProperties.applicableArchitectures
         if ($currentApplicable -like "*ARM64*") {
             $arm64Found = $true
             }
-        
+
         if (-not $arm64Found) {
             $summary.ARM64NotFound++
             continue
@@ -143,11 +143,11 @@ foreach ($app in $win32Apps) {
                 if ($arm64Found) {
             $summary.ARM64EnabledApps += "$appName (ID: $appId)"
            $archInfo = $archDetails -join ", "
-         
+
         }
-        
+
         $summary.ARM64Found++
-        
+
     }
     catch {
         $summary.FailedUpdates++
@@ -175,4 +175,4 @@ Write-Log -Message "Script completed." -Level "INFO" -Color "Cyan"
 write-host ""
 Write-host "Script completed, please see results at '$logFile'" -ForegroundColor Green
 
-Disconnect-MgGraph -ErrorAction SilentlyContinue
+Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null

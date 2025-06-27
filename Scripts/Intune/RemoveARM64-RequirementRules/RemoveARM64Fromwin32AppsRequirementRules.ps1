@@ -17,7 +17,7 @@
     Author        : Eswar Koneti @eskonr
     Prerequisite  : PowerShell 5.1 or later
     Modules: Microsoft.Graph.Beta.Devices.CorporateManagement
-    Scopes:DeviceManagementApps.Read.All
+    Scopes:DeviceManagementApps.ReadWrite.All
     #>
 
 #region Initialization
@@ -26,8 +26,8 @@
 $scriptpath = $MyInvocation.MyCommand.Path
 $dir = Split-Path $scriptpath
 $logFile = "$dir\RemoveARM64Fromwin32AppsRequirementRules.log"
-if (-not (Test-Path $logPath)) {
-    New-Item -ItemType Directory -Path $logPath -Force | Out-Null
+if (-not (Test-Path $dir)) {
+    New-Item -ItemType Directory -Path $dir -Force | Out-Null
 }
 
 # Initialize summary counters
@@ -46,10 +46,10 @@ function Write-Log {
         [string]$Level = "INFO",
         [string]$Color = "White"
     )
-    
+
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $logMessage = "$timestamp > [$Level] $Message"
-    
+
     Add-Content -Path $logFile -Value $logMessage
     #Write-Host $Message -ForegroundColor $Color
 }
@@ -63,14 +63,14 @@ try {
     # Check if module is installed
     if (-not (Get-Module -ListAvailable -Name $moduleName -ErrorAction SilentlyContinue)) {
        write-host "Module $moduleName not found. Installing..." -ForegroundColor "Yellow"
-        
+
         # Install the module
         Install-Module -Name $moduleName -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop
         write-host "Successfully installed $moduleName module" -ForegroundColor "Green"
     }
-    
+
     # Import the module
-    Import-Module $moduleName -MinimumVersion $moduleRequiredVersion -ErrorAction Stop
+    Import-Module $moduleName -ErrorAction Stop
     } catch {
         write-host "Failed to install or import $moduleName module: $_" -ForegroundColor "Red"
     exit 1
@@ -80,7 +80,7 @@ try {
 #region Graph Connection
 # Required permissions
 $scopes = @(
-    "DeviceManagementApps.Read.All"
+    "DeviceManagementApps.ReadWrite.All"
 )
 
 try {
@@ -109,29 +109,29 @@ try {
 foreach ($app in $win32Apps) {
     $appId = $app.Id
     $appName = $app.DisplayName
-    
+
     try {
         # Get the full app details with all properties
         $fullApp = Get-MgBetaDeviceAppManagementMobileApp -MobileAppId $appId -ErrorAction Stop
-        
+
         # Check if we have AdditionalProperties
         if (-not $fullApp.AdditionalProperties) {
             $summary.ARM64NotFound++
             continue
         }
-        
+
         # Create a clean update payload
         $params = @{
             "@odata.type" = "#microsoft.graph.win32LobApp"
             "displayName" = $fullApp.DisplayName
             "publisher" = $fullApp.Publisher
         }
-        
+
         # Track changes and status
         $arm64Found = $false
         $changesMade = $false
         $statusMessage = "$appName (ID: $appId)"
-        
+
         # Check allowedArchitectures
         $currentAllowed = $fullApp.AdditionalProperties.allowedArchitectures
         if ($currentAllowed -like "*ARM64*") {
@@ -141,7 +141,7 @@ foreach ($app in $win32Apps) {
             $changesMade = $true
             $statusMessage += " - Found ARM64 in allowedArchitectures"
                     }
-        
+
         # Check applicableArchitectures
         $currentApplicable = $fullApp.AdditionalProperties.applicableArchitectures
         if ($currentApplicable -like "*ARM64*") {
@@ -151,25 +151,25 @@ foreach ($app in $win32Apps) {
             $changesMade = $true
             $statusMessage += " - Found ARM64 in applicableArchitectures"
                     }
-        
+
         if (-not $arm64Found) {
             $summary.ARM64NotFound++
             $statusMessage = "$appName (ID: $appId) - No ARM64 found in requirement rules"
-            
+
             continue
         }
-        
+
         $summary.ARM64Found++
-        
+
         if ($changesMade) {
             try {
-            
+
                 Update-MgBetaDeviceAppManagementMobileApp -MobileAppId $appId -BodyParameter $params -ErrorAction Stop
-                
+
                 $summary.SuccessfullyUpdated++
                 $statusMessage += " - ARM64 successfully removed"
                 Write-Log -Message $statusMessage -Level "SUCCESS" -Color "Green"
-                
+
                 # Add delay between updates to avoid throttling
                 Start-Sleep -Seconds 2
             } catch {
@@ -207,5 +207,5 @@ Write-Log -Message $summaryMessage -Level "INFO" -Color "Cyan"
 write-host ""
 Write-Log -Message "Script completed." -Level "INFO" -Color "Cyan"
 Write-host "Script completed, Log file created at '$logFile'" -ForegroundColor 'green'
-Disconnect-MgGraph -ErrorAction SilentlyContinue
+Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
 write-host ""
