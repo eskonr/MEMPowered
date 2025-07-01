@@ -1,0 +1,28 @@
+| Feature/Aspect         | Windows Hello for Business                                | Passkeys (Authenticator/Hardware Token)                   |
+|------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
+| **Use Case**           |                                                           |                                                           |
+| Authentication Method  | Biometric (facial recognition, fingerprint) or PIN         | Possession-based (physical token or app-based)            |
+| Primary Use            | Enterprise environments, Windows login                     | Multi-factor authentication, online services              |
+| Integration            | Deep integration with Windows OS and Azure AD              | Widely supported across many online platforms             |
+| **Security**           |                                                           |                                                           |
+| Key Storage            | Trusted Platform Module (TPM)                              | Hardware security module or app-based key storage         |
+| Risk of Phishing       | Low (biometric/PIN tied to device)                         | Moderate (depends on implementation and user behavior)    |
+| Risk of Theft          | Device-specific, less prone to theft                       | Physical token can be lost or stolen                      |
+| **Convenience**        |                                                           |                                                           |
+| Ease of Use            | High (quick biometric/PIN entry)                           | Moderate (requires token/app and often additional steps)  |
+| Portability            | Device-specific, not portable                              | High (portable token/app can be used across devices)      |
+| **Deployment**         |                                                           |                                                           |
+| Setup Complexity       | Requires Windows 10/11, Azure AD/Intune configuration      | Varies (simple for apps, more complex for hardware)       |
+| Scalability            | Best suited for Windows environments                       | Flexible, can be used across different services           |
+| **Drawbacks**          |                                                           |                                                           |
+| Dependency on Hardware | Requires compatible hardware (TPM, biometric sensors)      | Requires carrying a token or having a phone available     |
+| Cost                   | May require investment in compatible devices               | Cost of tokens or potential app fees                      |
+| Vendor Lock-in         | Tied to Microsoft ecosystem                                | Typically open standards, less vendor lock-in             |
+
+### Key Takeaways:
+
+- **Windows Hello for Business** is especially suited for enterprise environments where devices are primarily Windows-based. It provides a seamless and secure user experience but is tied to the Windows ecosystem.
+
+- **Passkeys (Authenticator/Hardware Tokens)** offer flexibility and portability, making them ideal for a variety of online services and cross-platform use. However, they require the user to manage and keep track of the tokens or devices.
+
+Both solutions enhance security by reducing reliance on traditional passwords and are often used together to provide layered security (e.g., using Windows Hello for Business for device login and passkeys for accessing online services). The choice between them often depends on the specific needs and context of the organization or user.
