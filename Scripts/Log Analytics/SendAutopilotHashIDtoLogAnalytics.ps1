@@ -118,16 +118,12 @@ try {
 		'Model'                = $model
 	}
 
-	# Convert to JSON and output
-	$deviceInfo | ConvertTo-Json
 } catch {
 	Write-Error "Failed to retrieve information: $_"
 }
 
 # Convert to JSON and output
-$deviceInfo | ConvertTo-Json
-
-$AutopilotInfoJson = $a_ComputerList | ConvertTo-Json
+$AutopilotInfoJson = $deviceInfo | ConvertTo-Json
 
 if ($CollectAutopilotHashInfo) {
 
