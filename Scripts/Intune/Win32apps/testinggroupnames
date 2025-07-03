@@ -1,0 +1,94 @@
+$s_AssignmentIncludeAllUsers="#microsoft.graph.allLicensedUsersAssignmentTarget"    #Target type of assignment that represents an 'All users' inclusion assignment
+$s_AssignmentExclusionTarget="#microsoft.graph.exclusionGroupAssignmentTarget"  #Target type of assignment that represents an exclusion assignment
+$s_AssignmentIncludeAllDevices="FUTURE"    #Target type of assignment that represents an 'All device' inclusion assignment
+
+#Set initial values
+$a_Apps=@()
+
+#What about assignments?
+    If ($Item.Assignments)
+        {
+        #This application is assigned.  Lets capture each group that it is assigned to and indicate include / exclude, required / available / uninstall
+        $s_Assignments=""
+        $s_AssignmentIntent1=""
+        $s_AssignmentMode1=""
+        foreach ($Assignment in $Item.assignments)
+            {
+            #for each assignment, get the intent (required / available / uninstall)
+            $s_AssignmentIntent=$Assignment.intent
+            if ($Assignment.target.AdditionalProperties."@odata.type" -eq $s_AssignmentExclusionTarget)
+                {
+                #This is an exclusion assignment
+                $s_AssignmentMode="exclude"
+                $s_AssignmentGroupName=""
+                }
+            elseif ($Assignment.target.AdditionalProperties."@odata.type" -eq $s_AssignmentIncludeAllUsers)
+                {
+                #This is the all users assignment!
+                $s_AssignmentMode="include"
+                $s_AssignmentGroupName="All users"
+                }
+            elseif ($Assignment.target.AdditionalProperties."@odata.type" -eq $s_AssignmentIncludeAllDevices)
+                {
+                #This is the all devices assignment!
+                $s_AssignmentMode="include"
+                $s_AssignmentGroupName="All devices"
+                }
+            else
+                {
+                #This is an inclusion assignment
+                $s_AssignmentMode="include"
+                $s_AssignmentGroupName=""
+                }
+            #Get the name corresponding to the assignment groupID (objectID in Azure) if we don't know it already
+            if ($s_AssignmentGroupName -eq "")
+                {
+                $s_AssignmentGroupID=$($Assignment.target.AdditionalProperties."groupId")   #"groupId" is case sensitive!
+                if ($null -ne $s_AssignmentGroupID)
+                    {
+                    <#
+                    Permissions required as per: https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.groups/get-mggroup?view=graph-powershell-1.0
+                    GroupMember.Read.All
+                    #>
+                    try
+                        {
+                        $s_AssignmentGroupName=$(Get-MgGroup -GroupId $s_AssignmentGroupID -ErrorAction Stop).displayName
+                        #If here, the group assignment on the app is still valid
+                        }
+                    catch
+                        {
+                        #If here, the group assignment on the app is invalid (the group no longer exists)
+                        Write-Host "Group ID $($s_AssignmentGroupID) on app $($s_Title) no longer exists!"
+                        $s_AssignmentGroupName=$s_AssignmentGroupID + "_NOTEXIST"
+                        }
+                    }
+                else
+                    {
+                    #We can't look up the group
+                    $s_AssignmentGroupName="UNKNOWN"
+                    }
+                }
+            #Save the assignment info
+            If ($s_Assignments -eq "")
+                {
+                #First assignment for this app
+                $s_Assignments="$s_AssignmentIntent / $s_AssignmentMode / " + $s_AssignmentGroupName
+                $s_AssignmentIntent1=$s_AssignmentIntent
+                $s_AssignmentMode1=$s_AssignmentMode
+                }
+            else
+                {
+                #additional assignment for this app
+                $s_Assignments=$s_Assignments + "`n" + "$s_AssignmentIntent / $s_AssignmentMode / " + $s_AssignmentGroupName
+                $s_AssignmentIntent1=$s_AssignmentIntent
+                $s_AssignmentMode1=$s_AssignmentMode
+                }
+            }
+        }
+    else
+        {
+        #This application isn't assigned
+        $s_Assignments="NONE"
+        $s_AssignmentIntent1="NONE"
+        $s_AssignmentMode1="NONE"
+        }
