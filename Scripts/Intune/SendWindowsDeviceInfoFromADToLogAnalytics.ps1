@@ -3,7 +3,7 @@
     This scripts export the list of all Windows workstations active last 45 days and send it to Log analytics for data manipulation
 
 .DESCRIPTION
-    This script requires to run from domain joined computer that is connected to Manulife network.
+    This script requires to run from domain joined computer that is connected to corporate network.
     this script requires Active directory module to be loaded.
 
 .NOTES
