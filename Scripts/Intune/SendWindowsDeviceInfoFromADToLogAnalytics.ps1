@@ -111,13 +111,6 @@ $a_InScopeDeviceNamePrefixes=@()
 <#
 Prefixes of device names that are in scope for us to migrate
 #>
-# Canada, US and UK region
-$a_InScopeDeviceNamePrefixes += "BE"
-$a_InScopeDeviceNamePrefixes += "BM"
-$a_InScopeDeviceNamePrefixes += "CA"
-$a_InScopeDeviceNamePrefixes += "IE"
-$a_InScopeDeviceNamePrefixes += "GB"
-$a_InScopeDeviceNamePrefixes += "US"
 #Asia region
 $a_InScopeDeviceNamePrefixes += "CN"
 $a_InScopeDeviceNamePrefixes += "HK"
@@ -125,17 +118,11 @@ $a_InScopeDeviceNamePrefixes += "ID"
 $a_InScopeDeviceNamePrefixes += "JP"
 $a_InScopeDeviceNamePrefixes += "MM"
 $a_InScopeDeviceNamePrefixes += "MY"
-$a_InScopeDeviceNamePrefixes += "PH"
-$a_InScopeDeviceNamePrefixes += "VN"
-$a_InScopeDeviceNamePrefixes += "KH"
-$a_InScopeDeviceNamePrefixes += "SG"
-$a_InScopeDeviceNamePrefixes += "TW"
 
 $i_DaysDisabled=45
 $o_StaleDate = (Get-Date).AddDays(-45)
 $s_Domain="eskonr.com"
 $s_DomainConnection=$s_Domain + ":389"
-$s_ScriptVer="20.24.001"
 
 #Function section ------------------------------------------------------------------
 Clear-Host
@@ -157,7 +144,7 @@ If (!(Test-Path -path $s_Folder))
     }
 #Set outputfilename
 $s_OutfileADInScope="$s_Folder\ADDevicesInScope" + "_$s_DateMask.csv"
-Write-Host "** Connection to Manulife internal network is required or script will fail! **" -ForegroundColor Yellow
+Write-Host "** Connection to corporate internal network is required or script will fail! **" -ForegroundColor Yellow
 Write-Host ""
 #### Config Don't change
 $o_Start=Get-Date
