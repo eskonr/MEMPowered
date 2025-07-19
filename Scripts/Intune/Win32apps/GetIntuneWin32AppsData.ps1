@@ -8,7 +8,7 @@
     3. Retrieves all Win32 apps from Intune
     4. Extracts comprehensive properties of each application including all detection and requirement rules
     5. Logs all the data into CSV format
-    
+
 .NOTES
     File Name      : GetIntuneWin32Appsdata.ps1
     Author         : Eswar Koneti @eskonr
@@ -22,6 +22,10 @@ $scriptpath = $MyInvocation.MyCommand.Path
 $directory = Split-Path $scriptpath
 $date = (Get-Date -Format 'ddMMyyyy')
 $csvfile = "$directory\ListofWin32Apps_$date.csv"
+$AssignmentIncludeAllUsers="#microsoft.graph.allLicensedUsersAssignmentTarget"    #Target type of assignment that represents an 'All users' inclusion assignment
+$AssignmentExclusionTarget="#microsoft.graph.exclusionGroupAssignmentTarget"  #Target type of assignment that represents an exclusion assignment
+$AssignmentIncludeAllDevices="FUTURE"    #Target type of assignment that represents an 'All device' inclusion assignment
+
 #endregion
 
 #region Module Check and Installation
@@ -42,7 +46,7 @@ try {
 #endregion
 
 #region Graph Connection
-$scopes = @('DeviceManagementApps.Read.All')
+$scopes = @('DeviceManagementApps.Read.All','GroupMember.Read.All')
 
 try {
     Connect-MgGraph -Scopes $scopes -ErrorAction Stop -NoWelcome
@@ -58,11 +62,95 @@ $appInfoList = @()
 
 # Get all Win32 applications
 Write-Host "Getting the list of win32 apps. Please wait....."
-$apps = Get-MgBetaDeviceAppManagementMobileApp -Filter "isof('microsoft.graph.win32LobApp')" -All -ErrorAction Stop
+$apps = Get-MgBetaDeviceAppManagementMobileApp -Filter "isof('microsoft.graph.win32LobApp')" -All -ExpandProperty Assignments  -ErrorAction Stop
 Write-Host "Total Win32 apps found: $($apps.Count), extracting the data of each application" -ForegroundColor Cyan
 
 foreach ($app in $apps) {
-    # Process detection rules
+
+    #Set initial values
+    $Apps=@()
+
+    #What about assignments?
+        If ($app.Assignments)
+            {
+            #This application is assigned.  Lets capture each group that it is assigned to and indicate include / exclude, required / available / uninstall
+            $Assignments=""
+            foreach ($Assignment in $app.assignments)
+                {
+                #for each assignment, get the intent (required / available / uninstall)
+                $AssignmentIntent=$Assignment.intent
+                if ($Assignment.target.AdditionalProperties."@odata.type" -eq $AssignmentExclusionTarget)
+                    {
+                    #This is an exclusion assignment
+                    $AssignmentMode="exclude"
+                    $AssignmentGroupName=""
+                    }
+                elseif ($Assignment.target.AdditionalProperties."@odata.type" -eq $AssignmentIncludeAllUsers)
+                    {
+                    #This is the all users assignment!
+                    $AssignmentMode="include"
+                    $AssignmentGroupName="All users"
+                    }
+                elseif ($Assignment.target.AdditionalProperties."@odata.type" -eq $AssignmentIncludeAllDevices)
+                    {
+                    #This is the all devices assignment!
+                    $AssignmentMode="include"
+                    $AssignmentGroupName="All devices"
+                    }
+                else
+                    {
+                    #This is an inclusion assignment
+                    $AssignmentMode="include"
+                    $AssignmentGroupName=""
+                    }
+                #Get the name corresponding to the assignment groupID (objectID in Azure)
+                if ($AssignmentGroupName -eq "")
+                    {
+                    $AssignmentGroupID=$($Assignment.target.AdditionalProperties."groupId")   #"groupId" is case sensitive!
+                    if ($null -ne $AssignmentGroupID)
+                        {
+                        <#
+                        Permissions required as per: https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.groups/get-mggroup?view=graph-powershell-1.0
+                        GroupMember.Read.All
+                        #>
+                        try
+                            {
+                            $AssignmentGroupName=$(Get-MgGroup -GroupId $AssignmentGroupID -ErrorAction Stop).displayName
+                            #If here, the group assignment on the app is still valid
+                            }
+                        catch
+                            {
+                            #If here, the group assignment on the app is invalid (the group no longer exists)
+                            Write-Host "Group ID $($AssignmentGroupID) on app $($Title) no longer exists!"
+                            $AssignmentGroupName=$AssignmentGroupID + "_NOTEXIST"
+                            }
+                        }
+                    else
+                        {
+                        #if we cannot search for it
+                        $AssignmentGroupName="UNKNOWN"
+                        }
+                    }
+                #Save the assignment info
+                If ($Assignments -eq "")
+                    {
+                    #First assignment for this app
+                    $Assignments="$AssignmentIntent / $AssignmentMode / " + $AssignmentGroupName
+                    }
+                else
+                    {
+                    #additional assignment for this app
+                    $Assignments=$Assignments + "`n" + "$AssignmentIntent / $AssignmentMode / " + $AssignmentGroupName
+                    }
+                }
+            }
+        else
+            {
+            #This application isn't assigned
+            $Assignments="NONE"
+            }
+
+# Process detection rules
 # Process detection rules
 $detectionRules = @()
 $detectionDetails = @()
@@ -102,26 +190,26 @@ $detectionDetailsString = $detectionDetails -join " | "
     $requirementRules = @()
     $requirementDetails = @()
     $requirementRuleScript = "NONE"
-    
+
     if ($null -ne $app.AdditionalProperties.requirementRules) {
         foreach ($rule in $app.AdditionalProperties.requirementRules) {
             $ruleType = switch ($rule.'@odata.type') {
-                "#microsoft.graph.win32LobAppPowerShellScriptRequirement" { 
+                "#microsoft.graph.win32LobAppPowerShellScriptRequirement" {
                     $requirementDetails += "Script: $($rule.displayName)"
                     "Script"
                     break
                 }
-                "#microsoft.graph.win32LobAppRegistryRequirement" { 
+                "#microsoft.graph.win32LobAppRegistryRequirement" {
                     $requirementDetails += "Registry: $($rule.keyPath)\$($rule.valueName)"
                     "Registry"
                     break
                 }
-                "#microsoft.graph.win32LobAppFileSystemRequirement" { 
+                "#microsoft.graph.win32LobAppFileSystemRequirement" {
                     $requirementDetails += "FileSystem: $($rule.path)\$($rule.fileOrFolderName)"
                     "FileSystem"
                     break
                 }
-                "#microsoft.graph.win32LobAppProductCodeRequirement" { 
+                "#microsoft.graph.win32LobAppProductCodeRequirement" {
                     $requirementDetails += "MSI"
                     "MSI"
                     break
@@ -131,7 +219,7 @@ $detectionDetailsString = $detectionDetails -join " | "
             $requirementRules += $ruleType
         }
     }
-    
+
     $requirementRulesString = $requirementRules -join ", "
     $requirementDetailsString = $requirementDetails -join " | "
 
@@ -161,7 +249,9 @@ $detectionDetailsString = $detectionDetails -join " | "
         uploadState           = $app.uploadState
         publishingState       = $app.publishingState
         isAssigned            = $app.isAssigned
-        Appid                    = $app.id
+        Assignments           = $Assignments
+        Appid                 = $app.id
+
     }
 }
 
