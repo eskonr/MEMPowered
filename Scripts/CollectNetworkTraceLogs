@@ -1,0 +1,10 @@
+1. In your web browser, download TSS.zip from this link https://aka.ms/getTSS
+2.        Extract to a folder for e.g. C:\Temp\TSS
+3.        Open an PowerShell as admin, change the path to the directory of the extracted folder.
+4.        Run the following command:  .\TSS.ps1 -Start -PRF_Store -Procmon -noBasiclog -SDP PERF
+5.        Click on Accept to agree EULA of this tool.
+6.        After TSS initialization is completed, you’ll see a prompt to start reproduce the issue. Now please reproduce the problem:
+7.        Once the repro is completed, go back to PowerShell & type “Y” to stop logs.
+Log collection ETA 10 mins.
+8.        The resulting log file SDP_PERF.zip will be located under C:\MS_DATA
+9.        Please collect zip file and upload to the workspace
