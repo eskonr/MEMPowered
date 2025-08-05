@@ -18,23 +18,29 @@ if (Test-Path $csvPath) {
     Remove-Item $csvPath
 }
 
-# Get token
-$body = @{
-    client_id     = $clientId
-    scope         = $scope
-    client_secret = $clientSecret
+# === Get Access Token ===
+$TokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$TenantId/oauth2/v2.0/token" -Body @{
+    client_id     = $ClientId
+    scope         = $Scope
+    client_secret = $ClientSecret
     grant_type    = "client_credentials"
-}
-$response = Invoke-RestMethod -Method Post -Uri $tokenUrl -Body $body -ContentType "application/x-www-form-urlencoded"
-$accessToken = $response.access_token
+} -ContentType "application/x-www-form-urlencoded"
 
-# Call Graph API
-$graphUrl = "https://graph.microsoft.com/beta/reports/authenticationMethods/userRegistrationDetails"
-$headers = @{ Authorization = "Bearer $accessToken" }
-$data = Invoke-RestMethod -Uri $graphUrl -Headers $headers -Method Get
+$AccessToken = $TokenResponse.access_token
+$Headers = @{ Authorization = "Bearer $AccessToken" }
+
+# === Call Graph API with Pagination ===
+$AllUsers = @()
+$Url = "https://graph.microsoft.com/beta/reports/authenticationMethods/userRegistrationDetails?`$top=999"
+
+do {
+    $Response = Invoke-RestMethod -Method Get -Uri $Url -Headers $Headers
+    $AllUsers += $Response.value
+    $Url = $Response.'@odata.nextLink'
+} while ($Url)
 
 # Extract and format
-$users = $data.value | Select-Object `
+ $AllUsers =  $AllUsers | Select-Object `
     id, userPrincipalName, userDisplayName, userType, isAdmin,
     isSsprRegistered, isSsprEnabled, isSsprCapable, isMfaRegistered,
     isMfaCapable, isPasswordlessCapable, methodsRegistered,
@@ -42,10 +48,11 @@ $users = $data.value | Select-Object `
     userPreferredMethodForSecondaryAuthentication, lastUpdatedDateTime, defaultMfaMethod
 
 # Convert array fields to strings
-$users | ForEach-Object {
+ $AllUsers | ForEach-Object {
     $_.methodsRegistered = ($_.methodsRegistered -join ",")
+    $_.systemPreferredAuthenticationMethods = ($_.systemPreferredAuthenticationMethods -join ",")
 }
 
 # Export
-$users | Export-Csv -Path $csvPath -NoTypeInformation -Encoding UTF8
+ $AllUsers | Export-Csv -Path $csvPath -NoTypeInformation -Encoding UTF8
 Write-Host "✅ Export completed: $csvPath"
