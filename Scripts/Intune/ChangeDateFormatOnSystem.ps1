@@ -1,4 +1,37 @@
 
+<#
+.SYNOPSIS
+    Displays a GUI for users to select and apply a short date format in Windows,
+    with detailed logging and user context tracking.
+
+.DESCRIPTION
+    This script uses Windows Forms to present a simple interface for selecting
+    a preferred short date format (e.g., dd-MM-yyyy, MM-dd-yyyy). When the user
+    applies the change, the script updates the registry key:
+        HKCU:\Control Panel\International\sShortDate
+    It also implements robust logging:
+        - Logs actions, old/new values, and errors
+        - Creates log directory if missing
+        - Logs to: C:\ProgramData\eskonr\InstallLogs\ChangeDateFormat\ChangeDateFormat-<username>.log
+        - Falls back to %TEMP% if ProgramData is not writable
+    The script detects the interactive (logged-on) user for accurate logging.
+
+.PARAMETER None
+    No parameters are required. The script runs interactively.
+
+.NOTES
+    Author: Eswar Koneti (@eskonr)
+    Version: 1.0
+    Requirements:
+        - PowerShell 5.1 or later
+        - .NET Framework (for Windows Forms)
+    Tested on: Windows 10/11
+
+.EXAMPLE
+    Run the script directly:
+        powershell.exe -ExecutionPolicy Bypass -File .\ChangeDateFormat.ps1
+
+#>
 # Add the System.Windows.Forms assembly
 Add-Type -AssemblyName System.Windows.Forms
 
@@ -76,4 +109,5 @@ $form.Controls.Add($cancelButton)
 Log-Message "User $username opened the Change Date Format application."
 
 # Show the form
+
 $form.ShowDialog()
