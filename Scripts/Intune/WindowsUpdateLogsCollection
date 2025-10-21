@@ -1,0 +1,9 @@
+The following steps helps you to extract the windows update logs for troubleshooting the installation of patches or feature update issues.
+
+Download the Setup Report Zip from here:   http://aka.ms/getTSS
+Save and extract this file to a TEMP dir. Like "C:\temp"
+Open elevated PowerShell window
+Navigate to the TSS directory. By typing > Cd C:\temp\TSS
+Run the following command: .\TSS.ps1 -CollectLog DND_SetupReport
+Logs will be created here -->  C:MS_DATA TSS_computername_currentdate_Log-DND_SetupReport
+Review the logs for investigation purpose.
