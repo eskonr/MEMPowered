@@ -51,6 +51,8 @@
     Must run as SYSTEM / Administrator in full OS phase
     Works standalone (Intune Win32 app, SCCM application/package, or manual run) -
     no Task Sequence / UI++ dependency, since this is not an OSD-time step.
+
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-SecondaryLanguage-zh-cn.ps1"
 #>
 
 [CmdletBinding()]
