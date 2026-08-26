@@ -239,7 +239,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=first(Fields!CollectionName.Value, "CollID")</Value>
+                <Value>=Parameters!CollID.Label</Value>
                 <Style>
                   <FontFamily>calibri</FontFamily>
                   <FontSize>11pt</FontSize>
